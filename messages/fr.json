@@ -1,0 +1,392 @@
+{
+  "meta": {
+    "siteDescription": "SOFTLINEBY.CLA — tatouages fine line délicats et sur mesure : floral, lettrage, symboles. Découvrez les réalisations et demandez votre rendez-vous en ligne.",
+    "home": {
+      "title": "Tatouage fine line sur mesure",
+      "description": "Tatouages fins et délicats, dessinés pour vous. Découvrez l’univers SOFTLINEBY.CLA et demandez votre rendez-vous en ligne."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Toutes les réalisations SOFTLINEBY.CLA : fine line floral, lettrage, minimaliste, illustration et études."
+    },
+    "about": {
+      "title": "À propos",
+      "description": "L’univers, l’approche et la manière de travailler de SOFTLINEBY.CLA, artiste tatoueuse fine line."
+    },
+    "booking": {
+      "title": "Réservation",
+      "description": "Choisissez un moment parmi les disponibilités et envoyez votre demande de rendez-vous. Confirmation personnelle par l’artiste."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Une question ou une idée de projet ? Écrivez directement à SOFTLINEBY.CLA."
+    },
+    "privacy": {
+      "title": "Confidentialité",
+      "description": "Comment SOFTLINEBY.CLA traite vos données personnelles."
+    },
+    "legal": {
+      "title": "Mentions légales",
+      "description": "Informations légales du site SOFTLINEBY.CLA."
+    },
+    "response": {
+      "title": "Votre réponse"
+    }
+  },
+  "nav": {
+    "home": "Accueil",
+    "portfolio": "Portfolio",
+    "about": "À propos",
+    "booking": "Réservation",
+    "contact": "Contact",
+    "bookCta": "Prendre rendez-vous",
+    "menu": "Menu",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "skip": "Aller au contenu",
+    "language": "Langue",
+    "mainNav": "Navigation principale"
+  },
+  "intro": {
+    "skip": "Passer l’introduction"
+  },
+  "home": {
+    "eyebrow": "Tatouage fine line · sur rendez-vous",
+    "heroTitle": "L’art de la ligne",
+    "heroTitleAccent": "tout en douceur",
+    "heroText": "Des tatouages fins et délicats, dessinés pour vous et tracés avec précision. Chaque pièce naît d’un échange, d’une idée — et d’une ligne juste.",
+    "ctaBook": "Prendre rendez-vous",
+    "ctaWork": "Découvrir mes créations",
+    "scroll": "Défiler",
+    "heroMediaLabel": "Extrait vidéo d’une réalisation",
+    "pauseVideo": "Mettre la vidéo en pause",
+    "playVideo": "Lire la vidéo",
+    "manifestoLabel": "Manifeste",
+    "manifesto": "Une ligne fine ne pardonne rien. Elle demande du temps, de l’écoute et une main sûre. Ici, chaque projet est dessiné pour une seule peau : la vôtre.",
+    "aboutLabel": "L’artiste",
+    "aboutTitle": "Derrière la ligne",
+    "aboutText": "SOFTLINEBY.CLA, c’est un univers de tatouage fin et élégant : fleurs, lettrages, symboles et compositions sur mesure. Une approche douce et attentive, où l’on prend le temps de comprendre votre histoire avant de poser la première ligne.",
+    "aboutLink": "Découvrir mon approche",
+    "pillars": [
+      {
+        "title": "Précision",
+        "text": "Des traits nets et des détails pensés pour bien vieillir."
+      },
+      {
+        "title": "Sur mesure",
+        "text": "Chaque dessin est adapté à votre peau, à la zone et à votre histoire."
+      },
+      {
+        "title": "Écoute",
+        "text": "Un moment calme, des explications claires, aucune question de trop."
+      }
+    ],
+    "featuredLabel": "Réalisations",
+    "featuredTitle": "Une sélection",
+    "featuredText": "Quelques pièces choisies, du floral au lettrage. Chaque tatouage est présenté tel qu’il a été réalisé.",
+    "featuredAll": "Voir tout le portfolio",
+    "processLabel": "Réservation",
+    "processTitle": "Comment ça se passe",
+    "steps": [
+      {
+        "title": "Découvrir",
+        "text": "Parcourez les réalisations pour cerner le style qui vous parle."
+      },
+      {
+        "title": "Choisir un créneau",
+        "text": "Sélectionnez un jour et une heure parmi les disponibilités ouvertes par l’artiste."
+      },
+      {
+        "title": "Décrire votre projet",
+        "text": "Taille, emplacement, idées, images de référence : plus c’est précis, mieux c’est."
+      },
+      {
+        "title": "Envoyer la demande",
+        "text": "Le créneau est mis de côté pour vous le temps que votre projet soit étudié."
+      },
+      {
+        "title": "Confirmation personnelle",
+        "text": "Vous recevez la réponse par e-mail : confirmation, ou proposition d’un autre moment."
+      }
+    ],
+    "processNote": "Une demande n’est pas encore un rendez-vous : il n’est confirmé qu’après validation personnelle de l’artiste.",
+    "ctaLabel": "Votre projet",
+    "ctaTitle": "Votre idée mérite une ligne juste.",
+    "ctaText": "Choisissez un moment qui vous convient et racontez votre projet : vous recevrez une réponse personnelle.",
+    "ctaContact": "Poser une question"
+  },
+  "portfolio": {
+    "eyebrow": "Portfolio",
+    "title": "Les réalisations",
+    "intro": "Fine line, floral, lettrage et compositions sur mesure. Cliquez sur une image pour l’agrandir.",
+    "all": "Tout",
+    "filterLabel": "Filtrer par style",
+    "empty": "Aucune réalisation dans cette catégorie pour le moment.",
+    "open": "Agrandir : {title}",
+    "details": "Voir le projet",
+    "close": "Fermer",
+    "prev": "Image précédente",
+    "next": "Image suivante",
+    "counter": "{current} / {total}",
+    "video": "Vidéo",
+    "back": "Retour au portfolio",
+    "similar": "Dans le même style",
+    "style": "Style",
+    "year": "Année",
+    "media": "{count, plural, one {# média} other {# médias}}",
+    "bookSimilar": "Un projet dans ce style ?",
+    "bookSimilarCta": "Demander un rendez-vous",
+    "lightboxLabel": "Visionneuse d’images"
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "title": "Une ligne, une histoire",
+    "intro": "SOFTLINEBY.CLA est un univers de tatouage où la finesse du trait guide chaque création : des pièces délicates, lisibles et pensées pour vous ressembler.",
+    "approachTitle": "Mon approche",
+    "approach": "Le fine line repose sur la précision : des lignes fines, des ombrages légers et des détails qui doivent rester lisibles dans le temps. Chaque projet est adapté à la zone du corps, à la taille et à votre peau, pour que le tatouage vieillisse avec élégance.",
+    "processTitle": "Le processus créatif",
+    "process": "Tout commence par votre idée. Elle est affinée ensemble — style, emplacement, proportions — puis le dessin est préparé pour vous et peut être ajusté avant de passer à l’aiguille.",
+    "experienceTitle": "L’expérience",
+    "experience": "Un moment calme et attentif : on prend le temps d’expliquer, de répondre à vos questions et de vous accompagner jusqu’aux soins après le tatouage.",
+    "universeTitle": "L’univers",
+    "universe": "Fleurs et botanique, lettrages manuscrits, symboles minimalistes et petites illustrations : un vocabulaire doux, féminin ou neutre, toujours tracé avec soin.",
+    "cta": "Voir les réalisations"
+  },
+  "booking": {
+    "eyebrow": "Agenda",
+    "title": "Choisissez",
+    "titleAccent": "un moment",
+    "intro": "Indiquez la durée estimée de votre projet, puis choisissez un jour et une heure parmi les disponibilités.",
+    "notice": "Votre demande sera étudiée personnellement : elle ne devient un rendez-vous qu’après confirmation par e-mail.",
+    "stepsLabel": "Étapes de la réservation",
+    "steps": {
+      "time": "Choisir un moment",
+      "details": "Décrire le projet",
+      "done": "Demande envoyée"
+    },
+    "duration": {
+      "label": "Durée estimée",
+      "hint": "Pas sûr·e ? Choisissez une estimation, l’artiste l’ajustera avec vous.",
+      "option": "{count} h"
+    },
+    "calendar": {
+      "label": "Calendrier des disponibilités",
+      "prev": "Mois précédent",
+      "next": "Mois suivant",
+      "loading": "Chargement des disponibilités…",
+      "error": "Impossible de charger les disponibilités.",
+      "retry": "Réessayer",
+      "empty": "Aucune disponibilité ce mois-ci pour cette durée.",
+      "tryNext": "Voir le mois suivant",
+      "tryShorter": "Essayez une durée plus courte ou un autre mois.",
+      "legend": {
+        "available": "Disponible",
+        "held": "En attente",
+        "full": "Complet",
+        "closed": "Fermé"
+      },
+      "dayLabel": "{date} — {state}",
+      "selected": "sélectionné"
+    },
+    "slots": {
+      "label": "Horaires disponibles",
+      "chooseDay": "Choisissez un jour dans le calendrier pour voir les horaires.",
+      "available": "Disponible",
+      "held": "En attente",
+      "heldHint": "Une demande est en cours sur ce créneau ; il pourrait se libérer.",
+      "unavailable": "Indisponible",
+      "none": "Plus aucun horaire libre ce jour-là."
+    },
+    "summary": {
+      "title": "Votre demande",
+      "empty": "Sélectionnez une durée, un jour et un horaire.",
+      "date": "Date",
+      "time": "Horaire",
+      "duration": "Durée estimée",
+      "status": "Statut",
+      "statusValue": "À confirmer par l’artiste",
+      "continue": "Continuer",
+      "back": "Modifier le créneau",
+      "change": "Modifier"
+    },
+    "form": {
+      "title": "Votre projet",
+      "intro": "Ces informations permettent à l’artiste d’étudier votre demande. Les champs marqués d’un * sont obligatoires.",
+      "identity": "Vos coordonnées",
+      "project": "Le projet",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Adresse e-mail",
+      "description": "Description du projet",
+      "descriptionHint": "Motif, style, idée, signification… (20 caractères minimum)",
+      "placement": "Zone du corps",
+      "placementHint": "Ex. avant-bras intérieur, cheville, nuque",
+      "size": "Taille approximative (cm)",
+      "sizeHint": "Ex. 8 × 5",
+      "style": "Style ou type de projet",
+      "styleOptions": {
+        "": "— Choisir —",
+        "fine-line": "Fine line",
+        "floral": "Floral & nature",
+        "lettering": "Lettrage",
+        "minimal": "Minimaliste / symbole",
+        "illustration": "Illustration",
+        "other": "Autre / je ne sais pas"
+      },
+      "comment": "Commentaire complémentaire",
+      "references": "Images de référence",
+      "referencesHint": "Jusqu’à 3 images (JPG, PNG ou WebP). Elles restent privées et ne sont visibles que par l’artiste.",
+      "addImages": "Ajouter des images",
+      "removeImage": "Retirer {name}",
+      "consent": "J’accepte que mes données soient utilisées pour traiter ma demande de rendez-vous, conformément à la",
+      "privacyLink": "politique de confidentialité",
+      "optional": "facultatif",
+      "submit": "Envoyer ma demande",
+      "submitting": "Envoi en cours…",
+      "back": "Retour au calendrier",
+      "honeypot": "Ne pas remplir ce champ"
+    },
+    "errors": {
+      "required": "Ce champ est obligatoire.",
+      "invalid_email": "Adresse e-mail invalide.",
+      "too_short": "Un peu plus de détails, s’il vous plaît.",
+      "too_long": "Ce texte est trop long.",
+      "consent_required": "Votre accord est nécessaire pour envoyer la demande.",
+      "invalid": "Valeur invalide.",
+      "SLOT_UNAVAILABLE": "Ce créneau vient d’être pris ou n’est plus disponible. Choisissez-en un autre.",
+      "SLOT_HELD": "Une autre demande est déjà en cours sur ce créneau. Choisissez-en un autre.",
+      "TOO_SOON": "Ce créneau est trop proche. Choisissez un moment plus éloigné.",
+      "OUTSIDE_RANGE": "Ce créneau n’est pas réservable.",
+      "RATE_LIMITED": "Trop de tentatives. Patientez quelques minutes avant de réessayer.",
+      "SPAM": "Votre envoi n’a pas pu être validé. Réessayez dans quelques secondes.",
+      "generic": "Une erreur est survenue. Votre demande n’a pas été envoyée ; réessayez.",
+      "network": "Connexion impossible. Vérifiez votre réseau puis réessayez.",
+      "file_type": "Format non pris en charge (JPG, PNG ou WebP uniquement).",
+      "file_count": "3 images maximum.",
+      "file_size": "Image trop lourde, même après compression."
+    },
+    "success": {
+      "title": "Demande envoyée",
+      "text": "Merci {name} ! Votre demande est bien enregistrée. Le créneau est mis de côté pour vous en attendant la confirmation de l’artiste.",
+      "pending": "Ce n’est pas encore un rendez-vous confirmé : vous recevrez un e-mail dès que votre demande aura été étudiée.",
+      "reference": "Référence",
+      "emailSent": "Vous recevrez un récapitulatif de votre demande par e-mail.",
+      "home": "Retour à l’accueil",
+      "portfolio": "Voir le portfolio"
+    },
+    "respond": {
+      "eyebrow": "Nouveau créneau proposé",
+      "title": "Ce moment vous convient-il ?",
+      "intro": "Bonjour {name}, l’artiste vous propose le créneau suivant. Il ne sera confirmé qu’après votre accord.",
+      "message": "Message de l’artiste",
+      "accept": "Accepter ce créneau",
+      "decline": "Refuser la proposition",
+      "confirmDecline": "En refusant, votre demande sera clôturée. Continuer ?",
+      "acceptedTitle": "C’est confirmé !",
+      "accepted": "Votre rendez-vous est confirmé. Un e-mail récapitulatif vous a été envoyé.",
+      "declinedTitle": "Proposition refusée",
+      "declined": "C’est noté : votre demande est clôturée. Vous pouvez en faire une nouvelle quand vous le souhaitez.",
+      "expiredTitle": "Proposition expirée",
+      "expired": "Ce lien n’est plus valide : la proposition a expiré ou a déjà reçu une réponse.",
+      "newRequest": "Faire une nouvelle demande",
+      "expiresAt": "Réponse attendue avant le {date}"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Écrire à l’artiste",
+    "intro": "Une question, une idée de projet, une demande particulière ? Votre message arrive directement chez SOFTLINEBY.CLA.",
+    "bookingHint": "Pour un rendez-vous, le plus simple est de passer par l’agenda.",
+    "bookingLink": "Ouvrir l’agenda",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Adresse e-mail",
+    "subject": "Sujet",
+    "message": "Message",
+    "consent": "J’accepte que mes données soient utilisées pour répondre à mon message, conformément à la",
+    "submit": "Envoyer le message",
+    "submitting": "Envoi en cours…",
+    "successTitle": "Message envoyé",
+    "success": "Merci {name} ! Votre message est bien enregistré et a été transmis. Vous recevrez une réponse par e-mail.",
+    "another": "Écrire un autre message",
+    "social": "Suivre le travail",
+    "emailDirect": "Ou par e-mail"
+  },
+  "footer": {
+    "tagline": "Tatouage fine line, sur rendez-vous.",
+    "navTitle": "Explorer",
+    "bookingTitle": "Rendez-vous",
+    "bookingText": "Les demandes sont confirmées personnellement par l’artiste.",
+    "followTitle": "Suivre",
+    "legalTitle": "Informations",
+    "privacy": "Confidentialité",
+    "legal": "Mentions légales",
+    "cookies": "Aucun cookie publicitaire ni traceur.",
+    "rights": "Tous droits réservés.",
+    "backToTop": "Haut de page"
+  },
+  "legal": {
+    "eyebrow": "Informations",
+    "title": "Mentions légales",
+    "editorTitle": "Éditeur du site",
+    "name": "Nom ou dénomination",
+    "form": "Forme juridique",
+    "enterprise": "Numéro d’entreprise (BCE)",
+    "vat": "TVA",
+    "address": "Adresse",
+    "contact": "Contact",
+    "hostingTitle": "Hébergement",
+    "hosting": "Le site est hébergé par Vercel Inc. (vercel.com). La base de données est fournie par Neon (neon.tech).",
+    "ipTitle": "Propriété intellectuelle",
+    "ip": "Les photographies, vidéos, dessins et tatouages présentés sur ce site sont la propriété de leur autrice. Toute reproduction ou réutilisation sans autorisation écrite préalable est interdite.",
+    "liabilityTitle": "Responsabilité",
+    "liability": "Les informations de ce site sont fournies à titre indicatif. Une demande de rendez-vous envoyée via le site ne constitue pas un engagement tant qu’elle n’a pas été confirmée par e-mail.",
+    "updated": "Dernière mise à jour : {date}"
+  },
+  "privacy": {
+    "eyebrow": "Vos données",
+    "title": "Politique de confidentialité",
+    "intro": "Cette page explique quelles données sont collectées sur ce site, pourquoi, combien de temps elles sont conservées et comment exercer vos droits (RGPD).",
+    "controllerTitle": "Responsable du traitement",
+    "controller": "Le responsable du traitement est {name}. Pour toute question relative à vos données : {email}.",
+    "dataTitle": "Données collectées",
+    "data": [
+      "Demande de rendez-vous : prénom, nom, adresse e-mail, langue, date et heure souhaitées, durée estimée, description du projet et, si vous les fournissez, zone du corps, taille, style, commentaire et images de référence.",
+      "Formulaire de contact : prénom, nom, adresse e-mail, sujet et message.",
+      "Sécurité : une empreinte non réversible de votre adresse IP est utilisée quelques minutes pour limiter les abus (envois répétés)."
+    ],
+    "purposesTitle": "Finalités et bases légales",
+    "purposes": [
+      "Traiter votre demande de rendez-vous et vous répondre (mesures précontractuelles, art. 6.1.b RGPD).",
+      "Répondre à vos messages (intérêt légitime et mesures précontractuelles).",
+      "Protéger le site contre les abus et le spam (intérêt légitime, art. 6.1.f RGPD)."
+    ],
+    "recipientsTitle": "Destinataires et sous-traitants",
+    "recipients": "Vos données sont accessibles uniquement à l’artiste. Elles sont hébergées et traitées par des prestataires techniques : Vercel (hébergement du site), Neon (base de données), Google (envoi des e-mails via Gmail, agenda Google Agenda et tableau de suivi Google Sheets privés). Ces prestataires peuvent traiter des données hors de l’Union européenne dans le cadre de garanties appropriées (EU-US Data Privacy Framework ou clauses contractuelles types). Vos données ne sont jamais vendues ni utilisées à des fins publicitaires.",
+    "retentionTitle": "Durées de conservation",
+    "retention": [
+      "Images de référence : supprimées automatiquement {attachmentDays} jours après le rendez-vous ou la clôture de la demande.",
+      "Demandes de rendez-vous et messages : anonymisés {months} mois après le rendez-vous ou la réception.",
+      "Données anti-abus : quelques minutes à 24 heures au maximum."
+    ],
+    "rightsTitle": "Vos droits",
+    "rights": "Vous pouvez demander l’accès à vos données, leur rectification, leur effacement, leur portabilité, ou vous opposer à leur traitement en écrivant à {email}. Vous avez également le droit d’introduire une réclamation auprès de l’Autorité de protection des données (autoriteprotectiondonnees.be).",
+    "cookiesTitle": "Cookies",
+    "cookies": "Ce site n’utilise aucun cookie de mesure d’audience, publicitaire ou de réseau social. Seuls des cookies strictement nécessaires peuvent être déposés : la mémorisation de la langue choisie (NEXT_LOCALE) et, pour l’administratrice uniquement, le cookie de session de l’espace privé. Aucun bandeau de consentement n’est donc nécessaire.",
+    "securityTitle": "Sécurité",
+    "security": "Les échanges sont chiffrés (HTTPS). Les images de référence sont stockées de manière privée et ne sont accessibles qu’après authentification de l’artiste.",
+    "updated": "Dernière mise à jour : {date}"
+  },
+  "notFound": {
+    "title": "Cette page s’est effacée",
+    "text": "La page que vous cherchez n’existe pas ou a été déplacée.",
+    "home": "Retour à l’accueil"
+  },
+  "common": {
+    "required": "obligatoire",
+    "loading": "Chargement…",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "error": "Une erreur est survenue."
+  }
+}
