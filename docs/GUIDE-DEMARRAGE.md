@@ -1,225 +1,199 @@
 # Mise en ligne de SOFTLINEBY.CLA, étape par étape
 
-Ce guide vous mène du code jusqu'au site en ligne, avec les réservations, les e-mails, Google Agenda et Google Sheets.
-Suivez les étapes **dans l'ordre**. Comptez environ 1 h 30 la première fois.
+Le site fonctionne avec deux services **gratuits** :
 
-> 💡 Tous les services utilisés ont une offre gratuite. Lisez quand même l'encadré « Coûts » en bas de page avant de choisir votre hébergeur.
+- **GitHub Pages** affiche le site (portfolio, pages, formulaire de réservation) ;
+- **un Google Sheet** avec un petit programme (Google Apps Script) reçoit les demandes, envoie les e-mails depuis votre Gmail, remplit Google Agenda et range les images de référence dans un dossier Google Drive privé.
+
+Il n'y a ni Vercel, ni base de données, ni mot de passe à configurer.
+Suivez les étapes **dans l'ordre**. Comptez environ 45 minutes la première fois.
 
 ---
 
 ## Avant de commencer : ce qu'il vous faut
 
-- [ ] Un compte **GitHub** (vous l'avez déjà : c'est là qu'est le code).
-- [ ] Un compte **Google** (Gmail). Il sert pour l'envoi des e-mails, l'agenda et le tableur.
-- [ ] Un compte **Vercel** (gratuit) : <https://vercel.com/signup>. Choisissez « Continue with GitHub ».
+- [ ] Votre compte **GitHub** (le dépôt `RayaneVanOsselt/Softlinebycla-tatouages`).
+- [ ] Le compte **Google** (Gmail) qui servira au site. Les e-mails partiront de cette adresse, et l'agenda et le tableur lui appartiendront. Utilisez-le pour **toutes** les étapes Google ci-dessous.
 
 ---
 
-## Étape 1 — Mettre le code sur la branche principale
+## Étape 1 — Activer GitHub Pages (2 minutes)
 
-Le site se trouve sur la branche `claude/softlineby-tattoo-site-8892ff`. Pour le mettre en ligne :
+Tant que ce réglage n'est pas fait, l'adresse du site affiche seulement le texte du README au lieu du vrai site.
 
-1. Ouvrez le dépôt sur GitHub.
-2. Créez une *Pull Request* de cette branche vers `main`, puis cliquez sur **Merge**.
+1. Ouvrez <https://github.com/RayaneVanOsselt/Softlinebycla-tatouages/settings/pages>.
+2. Dans **Build and deployment**, à la ligne **Source**, choisissez **GitHub Actions** (au lieu de « Deploy from a branch »).
+3. Ouvrez l'onglet **Actions** du dépôt, cliquez sur **Publier le site** dans la liste de gauche, puis sur **Run workflow** et encore **Run workflow** (branche `main`).
+4. Attendez la coche verte (2 à 4 minutes).
+5. Ouvrez <https://rayanevanosselt.github.io/Softlinebycla-tatouages/>. Le site s'affiche avec l'animation du logo.
+   Si vous voyez encore l'ancienne page, attendez une minute et rechargez avec **Cmd + Maj + R**.
 
-(Claude peut le faire pour vous si vous le lui demandez.)
+> Le dépôt doit rester **public** : GitHub Pages est gratuit uniquement pour les dépôts publics. Aucune information secrète ne se trouve dans le dépôt.
 
----
+À partir de maintenant, **chaque modification sur la branche `main` met le site à jour toute seule** en 2 à 4 minutes.
 
-## Étape 2 — Créer le site sur Vercel
-
-1. Sur <https://vercel.com/new>, cliquez sur **Import** en face de votre dépôt `Softlinebycla`.
-2. Ne changez rien, puis cliquez sur **Deploy**.
-3. ⚠️ **Le premier déploiement va échouer**, et c'est normal : la base de données n'existe pas encore. On s'en occupe à l'étape 3.
-
----
-
-## Étape 3 — Ajouter la base de données (Neon, gratuite)
-
-1. Dans votre projet Vercel, ouvrez l'onglet **Storage**.
-2. Cliquez sur **Create Database**, choisissez **Neon (Serverless Postgres)**, puis **Continue**.
-3. Région : choisissez **Frankfurt (eu-central-1)**, en Europe (RGPD).
-4. Plan : **Free**. Cochez les 3 environnements (*Production, Preview, Development*), puis **Connect**.
-
-✅ La variable `DATABASE_URL` est ajoutée automatiquement.
+À ce stade, le site est visible, mais le calendrier de réservation et le formulaire de contact affichent une erreur de connexion : c'est normal, le moteur de réservation n'est pas encore branché (étapes 2 à 5).
 
 ---
 
-## Étape 4 — Ajouter le stockage des nouvelles photos et vidéos (Vercel Blob)
-
-1. Toujours dans **Storage**, cliquez sur **Create Database**, choisissez **Blob**, puis **Continue**.
-2. Donnez-lui un nom (ex. `softlineby-media`) et cliquez sur **Create**, puis **Connect** au projet.
-
-✅ La variable `BLOB_READ_WRITE_TOKEN` est ajoutée automatiquement.
-
----
-
-## Étape 5 — Préparer l'envoi d'e-mails avec Gmail (gratuit, sans EmailJS)
-
-Le site envoie ses e-mails depuis **votre adresse Gmail**, via un « mot de passe d'application ».
-Votre vrai mot de passe n'est jamais utilisé.
-
-1. Allez sur <https://myaccount.google.com/security>.
-2. Activez la **Validation en deux étapes** si ce n'est pas déjà fait (obligatoire pour l'étape suivante).
-3. Allez sur <https://myaccount.google.com/apppasswords>.
-4. Nom de l'application : `Site SOFTLINEBY.CLA`, puis **Créer**.
-5. Google affiche un code de **16 lettres** (ex. `abcd efgh ijkl mnop`). **Copiez-le** dans un endroit sûr, il ne sera plus affiché.
-
-Vous aurez besoin de :
-
-- `SMTP_USER` = votre adresse Gmail complète
-- `SMTP_PASSWORD` = le code de 16 lettres (les espaces ne gênent pas)
-
-> Limite Gmail : environ 500 e-mails par jour, largement suffisant pour un studio.
-
----
-
-## Étape 6 — Créer deux codes secrets
-
-Le site a besoin de deux longues chaînes aléatoires. Sur Mac, ouvrez l'application **Terminal** et collez cette commande :
-
-```bash
-openssl rand -base64 32
-```
-
-Appuyez sur Entrée et copiez le résultat : c'est votre `AUTH_SECRET`. Relancez la même commande et copiez ce second résultat : c'est votre `CRON_SECRET`.
-
----
-
-## Étape 7 — Créer l'accès Google (Agenda et Sheets) avec un « compte de service »
-
-Un compte de service est un petit robot Google, autorisé uniquement sur l'agenda et le tableur que vous partagerez avec lui. C'est gratuit et aucune carte bancaire n'est demandée.
-
-1. Allez sur <https://console.cloud.google.com/projectcreate>.
-   - Nom du projet : `softlineby-site`, puis **Créer**.
-2. Activez les deux API (vérifiez que le projet `softlineby-site` est sélectionné en haut de la page) :
-   - <https://console.cloud.google.com/apis/library/calendar-json.googleapis.com>, puis **Activer**
-   - <https://console.cloud.google.com/apis/library/sheets.googleapis.com>, puis **Activer**
-3. Créez le compte de service : <https://console.cloud.google.com/iam-admin/serviceaccounts/create>
-   - Nom : `site-reservations`, puis **Créer et continuer**.
-   - Ne mettez **aucun rôle**, puis cliquez sur **Continuer** et **OK**.
-4. Cliquez sur le compte créé, ouvrez l'onglet **Clés**, puis **Ajouter une clé**, **Créer une clé**, format **JSON**, et **Créer**.
-   Un fichier `.json` se télécharge. Ouvrez-le avec TextEdit. Vous y trouverez :
-   - `"client_email"` : c'est votre `GOOGLE_SERVICE_ACCOUNT_EMAIL` (il ressemble à `site-reservations@softlineby-site.iam.gserviceaccount.com`)
-   - `"private_key"` : c'est votre `GOOGLE_PRIVATE_KEY`. Copiez **tout** ce qui est entre les guillemets, de `-----BEGIN PRIVATE KEY-----` jusqu'à `-----END PRIVATE KEY-----\n`.
-
-> 🔒 Ce fichier est confidentiel : ne l'envoyez à personne et ne le mettez pas sur GitHub. Supprimez-le une fois l'étape 10 terminée.
-
----
-
-## Étape 8 — Créer l'agenda des rendez-vous
-
-1. Ouvrez <https://calendar.google.com>.
-2. À gauche, à côté de « Autres agendas », cliquez sur **+**, puis **Créer un agenda**.
-   Nom : `SOFTLINEBY.CLA — Rendez-vous`, fuseau horaire **(GMT+01:00) Bruxelles**, puis **Créer l'agenda**.
-3. Ouvrez les paramètres de ce nouvel agenda.
-4. Dans **Partager avec des personnes en particulier**, cliquez sur **Ajouter des personnes**, collez le `client_email` du compte de service et choisissez l'autorisation **Apporter des modifications aux événements**.
-5. Plus bas, section **Intégrer l'agenda**, copiez l'**ID de l'agenda** (il se termine par `@group.calendar.google.com`) : c'est votre `GOOGLE_CALENDAR_ID`.
-
-Ce que le site fera avec cet agenda :
-
-- une demande reçue apparaît en **provisoire** (« ⏳ Demande… »), sans bloquer votre agenda ;
-- quand vous acceptez, l'événement devient **confirmé** ;
-- quand vous refusez ou annulez, l'événement est retiré ;
-- si vous ajoutez vous-même un événement « occupé » dans cet agenda, ce créneau disparaît automatiquement des disponibilités du site.
-
-> Facultatif : pour que votre agenda personnel bloque aussi des créneaux, partagez-le avec le compte de service (« Voir uniquement les disponibilités ») et mettez son adresse dans `GOOGLE_BUSY_CALENDAR_IDS`.
-
----
-
-## Étape 9 — Créer le tableur de suivi
+## Étape 2 — Créer le tableur et y coller le moteur (10 minutes)
 
 1. Ouvrez <https://sheets.new> et nommez le fichier `SOFTLINEBY.CLA — Réservations`.
-2. Cliquez sur **Partager**, collez le `client_email` du compte de service, choisissez le rôle **Éditeur**, décochez « Envoyer une notification », puis **Partager**.
-3. Copiez l'ID dans l'adresse de la page : c'est la partie entre `/d/` et `/edit`.
-   Exemple : `https://docs.google.com/spreadsheets/d/`**`1AbC…xyz`**`/edit`, l'ID est `1AbC…xyz`. C'est votre `GOOGLE_SHEETS_ID`.
-
-Le site crée tout seul l'onglet « Réservations » et les colonnes : ID réservation, date de création, prénom, nom, e-mail, date demandée, début, fin, durée, projet, emplacement, taille, statut, référence Calendar, notes.
+2. Dans le menu du tableur, cliquez sur **Extensions**, puis **Apps Script**. Un nouvel onglet s'ouvre.
+3. En haut à gauche, cliquez sur « Projet sans titre » et renommez-le `SOFTLINEBY.CLA — moteur`.
+4. Ouvrez le fichier du moteur sur GitHub : <https://github.com/RayaneVanOsselt/Softlinebycla-tatouages/blob/main/apps-script/Code.gs>.
+   Cliquez sur l'icône **Copy raw file** (deux carrés superposés, en haut à droite du code).
+5. Revenez dans Apps Script, dans le fichier **Code.gs** : sélectionnez tout ce qui s'y trouve (**Cmd + A**), puis collez (**Cmd + V**).
+6. Réglage du fuseau horaire et de l'accès :
+   - cliquez sur la roue dentée **Paramètres du projet** (barre de gauche) ;
+   - cochez **Afficher le fichier manifeste « appsscript.json » dans l'éditeur** ;
+   - revenez dans l'éditeur (icône `< >`), ouvrez **appsscript.json**, remplacez tout son contenu par celui de <https://github.com/RayaneVanOsselt/Softlinebycla-tatouages/blob/main/apps-script/appsscript.json>.
+7. Cliquez sur l'icône **Enregistrer** (disquette) ou faites **Cmd + S**.
 
 ---
 
-## Étape 10 — Saisir les variables dans Vercel
+## Étape 3 — Installer (5 minutes)
 
-Dans Vercel, ouvrez votre projet, puis **Settings** et **Environment Variables**. Ajoutez chaque ligne (Key / Value) en cochant les 3 environnements :
+1. Revenez sur l'onglet du **tableur** et rechargez la page.
+   Après quelques secondes, un menu **✦ SOFTLINEBY.CLA** apparaît à droite de « Aide ».
+2. Cliquez sur **✦ SOFTLINEBY.CLA**, puis **1. Installer / réparer**.
+3. Google demande une autorisation. C'est normal : c'est votre propre programme, qui demande l'accès à votre tableur, votre agenda, votre Drive et l'envoi d'e-mails.
+   - **Continuer**, puis choisissez votre compte ;
+   - sur l'écran « Google n'a pas validé cette application », cliquez sur **Paramètres avancés**, puis **Accéder à SOFTLINEBY.CLA — moteur (non sécurisé)** ;
+   - cliquez sur **Autoriser** (ou cochez tout, puis **Continuer**).
+4. Si rien d'autre ne s'affiche, relancez **✦ SOFTLINEBY.CLA → 1. Installer / réparer**.
+   Le message **✓ Installation terminée** confirme que tout est prêt.
 
-| Key | Value |
+Ce que l'installation a créé :
+
+- dans le tableur, les onglets **Réservations**, **Disponibilités**, **Indisponibilités**, **Messages**, **Paramètres** et **Journal** ;
+- dans Google Agenda, un agenda **SOFTLINEBY.CLA — Rendez-vous** ;
+- dans Google Drive, un dossier privé **SOFTLINEBY.CLA — Images de référence (privé)** ;
+- deux automatismes : la réaction à vos décisions dans le tableur, et une maintenance toutes les heures (expiration des demandes, nouvel essai des e-mails en échec, ajout des journées suivantes dans « Disponibilités », suppression des anciennes données).
+
+---
+
+## Étape 4 — Publier le moteur sur Internet (5 minutes)
+
+1. Dans **Apps Script**, cliquez sur le bouton bleu **Déployer**, puis **Nouveau déploiement**.
+2. À côté de « Sélectionner le type », cliquez sur la roue dentée, puis **Application Web**.
+3. Remplissez :
+   - **Description** : `Site`
+   - **Exécuter en tant que** : **Moi** (votre adresse)
+   - **Qui peut accéder** : **Tout le monde** (⚠️ pas « Tout le monde disposant d'un compte Google »)
+4. Cliquez sur **Déployer**. Autorisez à nouveau si Google le demande.
+5. Copiez l'**URL de l'application Web**. Elle ressemble à `https://script.google.com/macros/s/AKfy…/exec`.
+6. Vérification : collez cette adresse dans un nouvel onglet. Vous devez voir :
+   `{"ok":true,"service":"SOFTLINEBY.CLA","status":"en ligne"}`
+
+> 🔁 **Si un jour vous modifiez le moteur** (nouveau Code.gs) : **Déployer → Gérer les déploiements →** crayon **→ Version : Nouvelle version → Déployer**. L'adresse reste la même.
+> Ne refaites pas « Nouveau déploiement », sinon l'adresse change et il faut la recopier dans le site.
+
+---
+
+## Étape 5 — Brancher le site au moteur et remplir vos informations (10 minutes)
+
+Toutes les informations du site se trouvent dans un seul fichier : `content/site.json`.
+
+1. Ouvrez <https://github.com/RayaneVanOsselt/Softlinebycla-tatouages/edit/main/content/site.json>.
+2. Remplissez les valeurs **entre les guillemets**, sans toucher au reste :
+
+| Champ | À mettre |
 |---|---|
-| `ADMIN_EMAILS` | votre adresse e-mail (celle qui pourra se connecter à l'admin) |
-| `AUTH_SECRET` | le 1er code de l'étape 6 |
-| `CRON_SECRET` | le 2e code de l'étape 6 |
-| `SMTP_USER` | votre adresse Gmail |
-| `SMTP_PASSWORD` | le code de 16 lettres de l'étape 5 |
-| `CONTACT_EMAIL` | l'adresse qui reçoit les messages (souvent la même) |
-| `BOOKING_NOTIFICATION_EMAIL` | l'adresse qui reçoit les demandes de rendez-vous |
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | le `client_email` de l'étape 7 |
-| `GOOGLE_PRIVATE_KEY` | la `private_key` de l'étape 7 (collez-la telle quelle) |
-| `GOOGLE_CALENDAR_ID` | l'ID de l'étape 8 |
-| `GOOGLE_SHEETS_ID` | l'ID de l'étape 9 |
+| `adresseApiReservation` | l'URL copiée à l'étape 4 (obligatoire pour les réservations) |
+| `emailContact` | l'adresse affichée sur le site |
+| `reseauxSociaux` → `instagram`, `tiktok`… | le lien complet, qui commence par `https://`. Laissez vide ce que vous n'utilisez pas : rien ne s'affichera. |
+| `mentionsLegales` → `nom` | votre nom ou le nom de votre entreprise |
+| `mentionsLegales` → `formeJuridique` | par exemple `Personne physique (indépendante)` |
+| `mentionsLegales` → `numeroEntreprise` | votre numéro BCE, par exemple `0123.456.789` (obligatoire en Belgique) |
+| `mentionsLegales` → `tva` | votre numéro de TVA, ou vide si vous n'en avez pas |
+| `mentionsLegales` → `emailDonneesPersonnelles` | l'adresse pour les questions RGPD (souvent la même) |
+| `mentionsLegales` → `derniereMiseAJour` | la date du jour, par exemple `31 octobre 2026` |
+| `conservation` | à laisser tel quel, sauf si vous changez les mêmes durées dans l'onglet **Paramètres** du tableur |
 
-`DATABASE_URL` et `BLOB_READ_WRITE_TOKEN` sont déjà là grâce aux étapes 3 et 4.
-L'adresse du site est détectée automatiquement. Vous ajouterez `NEXT_PUBLIC_SITE_URL` seulement si vous branchez un nom de domaine (étape 13).
+   Exemple pour la première ligne :
 
----
+   ```json
+   "adresseApiReservation": "https://script.google.com/macros/s/AKfy…/exec",
+   ```
 
-## Étape 11 — Relancer le déploiement
+3. Cliquez sur **Commit changes…**, laissez **Commit directly to the main branch**, puis **Commit changes**.
+4. Le site se met à jour tout seul (onglet **Actions** : attendez la coche verte).
 
-1. Ouvrez l'onglet **Deployments**.
-2. Sur le dernier déploiement, cliquez sur **⋯**, puis **Redeploy**, puis **Redeploy**.
-3. Attendez le statut **Ready** (2 à 3 minutes). Le site crée tout seul ses tables et importe votre portfolio.
-
-✅ Le site est en ligne à l'adresse affichée par Vercel (ex. `https://softlinebycla.vercel.app`).
+> ⚠️ Si la coche devient une croix rouge, c'est presque toujours une virgule ou un guillemet effacé par erreur. Rouvrez le fichier, comparez avec l'exemple ci-dessus et corrigez.
 
 ---
 
-## Étape 12 — Première connexion et réglages (10 minutes)
+## Étape 6 — Vérifier les réglages du tableur (2 minutes)
 
-1. Allez sur `https://VOTRE-SITE/admin`.
-2. Entrez l'adresse mise dans `ADMIN_EMAILS` : vous recevez un **lien de connexion** par e-mail (pensez à regarder dans les spams). Cliquez dessus, puis sur **Me connecter**.
-3. Le **tableau de bord** affiche une check-list. Complétez-la :
-   - **Synchronisation** : cliquez sur « Tester l'envoi d'e-mail » puis sur « Tester Google Agenda & Sheets ». Les deux doivent afficher ✓.
-   - **Paramètres, section Contact** : vérifiez les adresses e-mail.
-   - **Paramètres, section Mentions légales** : remplissez votre nom, votre forme juridique et votre **numéro d'entreprise (BCE)**. Ces informations sont obligatoires en Belgique ; faites relire les textes juridiques avant publication.
-   - **Paramètres, section Réseaux sociaux** : collez vos liens Instagram, TikTok, etc. Ceux qui restent vides n'apparaissent pas sur le site.
-   - **Agenda** : ouvrez vos premières disponibilités (voir le guide d'utilisation).
-4. Faites une **réservation test** depuis le site public avec une autre adresse e-mail. Vérifiez :
-   - [ ] l'e-mail « Demande reçue — en attente de confirmation » côté client ;
+Dans l'onglet **Paramètres** du tableur, modifiez uniquement la colonne **Valeur** :
+
+- **E-mail qui reçoit les demandes et messages** : votre adresse (déjà remplie).
+- **Adresse du site** : `https://rayanevanosselt.github.io/Softlinebycla-tatouages` (sans `/` à la fin). À changer seulement si vous branchez un nom de domaine (étape 9).
+- **Mon agenda Google principal bloque aussi des créneaux** : `oui` si vos rendez-vous personnels (dans votre agenda Google habituel) doivent rendre ces heures indisponibles sur le site.
+- Les délais (blocage d'une demande, délai minimum, durée maximale…) peuvent rester tels quels.
+
+---
+
+## Étape 7 — Ouvrir vos premières disponibilités (5 minutes)
+
+Par défaut, **tout est fermé** : un client ne voit que ce que vous ouvrez.
+
+1. Onglet **Disponibilités** : une ligne par jour, une case par heure (11:00 à 19:00, chaque case = 1 h).
+2. Cochez les heures où vous acceptez des rendez-vous.
+3. Pour aller plus vite : sélectionnez plusieurs lignes, puis **✦ SOFTLINEBY.CLA → Ouvrir toute la plage (11:00–20:00) pour les jours sélectionnés**.
+
+Le détail de l'utilisation quotidienne est dans [GUIDE-ADMIN.md](GUIDE-ADMIN.md).
+
+---
+
+## Étape 8 — Test complet (10 minutes)
+
+1. **✦ SOFTLINEBY.CLA → Tester l'envoi d'un e-mail** : vous recevez un e-mail de test (regardez aussi dans les spams).
+2. Sur le site en ligne, faites une **réservation test** avec une **autre adresse e-mail** que la vôtre, avec une image de référence. Vérifiez :
+   - [ ] l'e-mail « Demande reçue » côté client ;
    - [ ] l'e-mail « Nouvelle demande » de votre côté ;
-   - [ ] l'événement provisoire dans Google Agenda ;
-   - [ ] la ligne dans Google Sheets.
-5. Acceptez cette demande dans l'admin, vérifiez l'e-mail de confirmation, puis **annulez-la** pour libérer le créneau.
+   - [ ] la ligne dans l'onglet **Réservations** ;
+   - [ ] l'événement provisoire (gris) dans l'agenda **SOFTLINEBY.CLA — Rendez-vous** ;
+   - [ ] l'image dans le dossier Drive privé.
+3. Dans la ligne de la demande, colonne **➜ Décision**, choisissez **Accepter** : le client reçoit la confirmation et l'événement devient orange.
+4. Choisissez ensuite **Annuler le rendez-vous** pour libérer le créneau.
+5. Envoyez un message test depuis la page **Contact** : il apparaît dans l'onglet **Messages** et dans votre boîte e-mail.
 
 ---
 
-## Étape 13 (facultative) — Votre propre nom de domaine
+## Étape 9 (facultative) — Votre propre nom de domaine
 
-1. Vercel : ouvrez **Settings**, puis **Domains**, puis **Add**, et saisissez votre domaine (ex. `softlinebycla.be`). Suivez les instructions DNS chez votre registraire.
-2. Ajoutez la variable `NEXT_PUBLIC_SITE_URL` = `https://softlinebycla.be`, puis relancez le déploiement (étape 11).
+1. GitHub : **Settings → Pages → Custom domain**, saisissez votre domaine (ex. `www.softlinebycla.be`), puis **Save**.
+2. Chez votre registraire (là où vous avez acheté le domaine), ajoutez :
+   - pour `www` : un enregistrement **CNAME** vers `rayanevanosselt.github.io` ;
+   - pour le domaine sans `www` : quatre enregistrements **A** vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153` et `185.199.111.153`.
+3. Quand GitHub l'indique, cochez **Enforce HTTPS**.
+4. Relancez **Actions → Publier le site → Run workflow** : les adresses du site s'adaptent toutes seules au nouveau domaine.
+5. Dans l'onglet **Paramètres** du tableur, remplacez l'**Adresse du site** par `https://www.softlinebycla.be` (sans `/` final), pour que les liens des e-mails soient corrects.
 
 ---
 
 ## ✅ Check-list avant d'annoncer le site
 
-- [ ] Les tests e-mail et Google affichent ✓ (Admin, page Synchronisation)
+- [ ] <https://rayanevanosselt.github.io/Softlinebycla-tatouages/> affiche le site (pas le README)
+- [ ] L'URL du moteur affiche `"status":"en ligne"` et est collée dans `content/site.json`
+- [ ] L'e-mail de test est bien arrivé
 - [ ] Une réservation test a été faite, acceptée, puis annulée
-- [ ] Les mentions légales sont complétées et relues
+- [ ] Les mentions légales sont complétées et relues (numéro BCE obligatoire)
 - [ ] Les disponibilités des prochaines semaines sont ouvertes
 - [ ] Les réseaux sociaux sont renseignés (ou volontairement laissés vides)
-- [ ] Les photos du portfolio sont vérifiées : publiez ou masquez chaque projet, notamment ceux qui montrent des prénoms ou des dates (Ohana, Prénoms entrelacés, Bouquet & prénom, Une date). Assurez-vous d'avoir l'accord des clients concernés.
-- [ ] Le fichier JSON du compte de service est supprimé de votre ordinateur
+- [ ] Les photos du portfolio sont vérifiées, notamment celles qui montrent des prénoms ou des dates (Ohana, Prénoms entrelacés, Bouquet & prénom, Une date). Assurez-vous d'avoir l'accord des clients concernés, ou masquez-les (voir [GUIDE-ADMIN.md](GUIDE-ADMIN.md), section Portfolio).
 
 ---
 
-## 💶 Coûts : à lire
+## 💶 Coûts
 
 | Service | Gratuit ? | Remarque |
 |---|---|---|
-| Gmail SMTP | ✅ 100 % | environ 500 e-mails/jour |
-| Neon (base de données) | ✅ | 0,5 Go, largement suffisant |
-| Google Agenda / Sheets / compte de service | ✅ | aucune carte bancaire |
-| Vercel Blob | ✅ | quota gratuit inclus, suffisant pour un portfolio |
-| **Vercel (hébergement)** | ⚠️ | Le plan **Hobby** est gratuit, mais ses conditions le réservent à un **usage personnel non commercial**. Pour un site professionnel, Vercel prévoit le plan **Pro** (environ 20 $/mois). |
-
-Si vous voulez un hébergement gratuit autorisé pour un usage commercial, il faut adapter le site à un autre hébergeur (par exemple Netlify). C'est faisable, mais ce n'est pas inclus ici : demandez-le si besoin.
+| GitHub Pages | ✅ | Dépôt public. Les conditions de GitHub interdisent de l'utiliser comme boutique en ligne ; un site vitrine avec des demandes de rendez-vous, sans paiement en ligne, n'est pas dans ce cas. |
+| Google Sheets, Agenda, Drive, Apps Script | ✅ | Aucune carte bancaire. |
+| Envoi d'e-mails par Gmail | ✅ | Environ **100 e-mails par jour** avec un compte Gmail gratuit (une demande en envoie 2). Largement suffisant pour un studio. |
 
 ---
 
@@ -227,9 +201,11 @@ Si vous voulez un hébergement gratuit autorisé pour un usage commercial, il fa
 
 | Symptôme | Solution |
 |---|---|
-| Le déploiement échoue avec « DATABASE_URL » | Refaites l'étape 3, puis l'étape 11. |
-| Pas d'e-mail de connexion admin | Vérifiez les spams, `ADMIN_EMAILS`, `SMTP_USER` et `SMTP_PASSWORD`, puis relancez le déploiement. |
-| Test Google : « 403 » ou « 404 » | L'agenda ou le tableur n'est pas partagé avec le `client_email` (étapes 8 et 9), ou l'API n'est pas activée (étape 7.2). |
-| Test Google : « invalid_grant » | `GOOGLE_PRIVATE_KEY` est mal copiée : recopiez-la en entier, `-----BEGIN` et `-----END` compris. |
-| Le calendrier public est vide | Ouvrez des créneaux dans Admin, page Agenda. Par défaut, rien n'est ouvert. |
-| Une tâche est « En échec » | Admin, page Synchronisation : cliquez sur « Relancer les tâches en échec ». |
+| L'adresse du site affiche le texte du README | Étape 1 : la **Source** doit être **GitHub Actions**, puis relancez **Run workflow**. |
+| La coche du site est rouge dans **Actions** | Après une modification de `content/site.json` : une virgule ou un guillemet manque. Ouvrez l'échec pour voir la ligne concernée. |
+| Le calendrier affiche « Connexion impossible » | `adresseApiReservation` est vide ou mal copiée (étape 5), ou l'accès du déploiement n'est pas « Tout le monde » (étape 4). |
+| Le calendrier est vide (tout est fermé) | Aucune case n'est cochée dans l'onglet **Disponibilités** (étape 7). |
+| Le menu ✦ SOFTLINEBY.CLA n'apparaît pas | Rechargez le tableur. Vérifiez que le code est bien enregistré dans Apps Script (étape 2). |
+| Choisir une décision ne fait rien | Relancez **✦ SOFTLINEBY.CLA → 1. Installer / réparer** (cela réinstalle les automatismes). |
+| Pas d'e-mail reçu | Regardez dans les spams, puis l'onglet **Journal** du tableur : il indique chaque e-mail envoyé ou en échec. Les échecs sont relancés automatiquement toutes les heures. |
+| Une modification du moteur n'a aucun effet | Créez une **nouvelle version** du déploiement (encadré 🔁 de l'étape 4). |

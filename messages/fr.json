@@ -336,7 +336,7 @@
     "address": "Adresse",
     "contact": "Contact",
     "hostingTitle": "Hébergement",
-    "hosting": "Le site est hébergé par Vercel Inc. (vercel.com). La base de données est fournie par Neon (neon.tech).",
+    "hosting": "Le site est hébergé par GitHub Pages, un service de GitHub, Inc. (github.com). Les demandes de rendez-vous et les messages sont traités avec les services de Google (Google Apps Script, Google Sheets, Google Agenda, Google Drive et Gmail), fournis par Google Ireland Limited.",
     "ipTitle": "Propriété intellectuelle",
     "ip": "Les photographies, vidéos, dessins et tatouages présentés sur ce site sont la propriété de leur autrice. Toute reproduction ou réutilisation sans autorisation écrite préalable est interdite.",
     "liabilityTitle": "Responsabilité",
@@ -353,7 +353,7 @@
     "data": [
       "Demande de rendez-vous : prénom, nom, adresse e-mail, langue, date et heure souhaitées, durée estimée, description du projet et, si vous les fournissez, zone du corps, taille, style, commentaire et images de référence.",
       "Formulaire de contact : prénom, nom, adresse e-mail, sujet et message.",
-      "Sécurité : une empreinte non réversible de votre adresse IP est utilisée quelques minutes pour limiter les abus (envois répétés)."
+      "Sécurité : une empreinte non réversible de votre adresse e-mail est utilisée pendant une heure au maximum pour limiter les abus (envois répétés)."
     ],
     "purposesTitle": "Finalités et bases légales",
     "purposes": [
@@ -362,19 +362,19 @@
       "Protéger le site contre les abus et le spam (intérêt légitime, art. 6.1.f RGPD)."
     ],
     "recipientsTitle": "Destinataires et sous-traitants",
-    "recipients": "Vos données sont accessibles uniquement à l’artiste. Elles sont hébergées et traitées par des prestataires techniques : Vercel (hébergement du site), Neon (base de données), Google (envoi des e-mails via Gmail, agenda Google Agenda et tableau de suivi Google Sheets privés). Ces prestataires peuvent traiter des données hors de l’Union européenne dans le cadre de garanties appropriées (EU-US Data Privacy Framework ou clauses contractuelles types). Vos données ne sont jamais vendues ni utilisées à des fins publicitaires.",
+    "recipients": "Vos données sont accessibles uniquement à l’artiste. Elles sont hébergées et traitées par des prestataires techniques : GitHub (hébergement des pages du site, qui ne reçoit pas vos demandes) et Google (traitement des demandes via Google Apps Script, tableau de suivi Google Sheets, agenda Google Agenda et dossier Google Drive privés, envoi des e-mails via Gmail). Ces prestataires peuvent traiter des données hors de l’Union européenne dans le cadre de garanties appropriées (EU-US Data Privacy Framework ou clauses contractuelles types). Vos données ne sont jamais vendues ni utilisées à des fins publicitaires.",
     "retentionTitle": "Durées de conservation",
     "retention": [
       "Images de référence : supprimées automatiquement {attachmentDays} jours après le rendez-vous ou la clôture de la demande.",
       "Demandes de rendez-vous et messages : anonymisés {months} mois après le rendez-vous ou la réception.",
-      "Données anti-abus : quelques minutes à 24 heures au maximum."
+      "Données anti-abus : une heure au maximum."
     ],
     "rightsTitle": "Vos droits",
     "rights": "Vous pouvez demander l’accès à vos données, leur rectification, leur effacement, leur portabilité, ou vous opposer à leur traitement en écrivant à {email}. Vous avez également le droit d’introduire une réclamation auprès de l’Autorité de protection des données (autoriteprotectiondonnees.be).",
     "cookiesTitle": "Cookies",
-    "cookies": "Ce site n’utilise aucun cookie de mesure d’audience, publicitaire ou de réseau social. Seuls des cookies strictement nécessaires peuvent être déposés : la mémorisation de la langue choisie (NEXT_LOCALE) et, pour l’administratrice uniquement, le cookie de session de l’espace privé. Aucun bandeau de consentement n’est donc nécessaire.",
+    "cookies": "Ce site ne dépose aucun cookie et n’utilise aucun outil de mesure d’audience, publicitaire ou de réseau social. Seuls deux éléments strictement nécessaires sont enregistrés dans votre navigateur : la langue choisie (slc-locale) et, le temps de la visite, le fait que l’animation d’introduction a déjà été vue. Aucun bandeau de consentement n’est donc nécessaire.",
     "securityTitle": "Sécurité",
-    "security": "Les échanges sont chiffrés (HTTPS). Les images de référence sont stockées de manière privée et ne sont accessibles qu’après authentification de l’artiste.",
+    "security": "Les échanges sont chiffrés (HTTPS). Les images de référence sont stockées dans un dossier Google Drive privé, accessible uniquement à l’artiste.",
     "updated": "Dernière mise à jour : {date}"
   },
   "notFound": {

@@ -336,7 +336,7 @@
     "address": "Address",
     "contact": "Contact",
     "hostingTitle": "Hosting",
-    "hosting": "The website is hosted by Vercel Inc. (vercel.com). The database is provided by Neon (neon.tech).",
+    "hosting": "The website is hosted by GitHub Pages, a service of GitHub, Inc. (github.com). Appointment requests and messages are processed with Google services (Google Apps Script, Google Sheets, Google Calendar, Google Drive and Gmail), provided by Google Ireland Limited.",
     "ipTitle": "Intellectual property",
     "ip": "The photographs, videos, designs and tattoos shown on this website belong to their author. Any reproduction or reuse without prior written permission is prohibited.",
     "liabilityTitle": "Liability",
@@ -353,7 +353,7 @@
     "data": [
       "Appointment request: first name, last name, email address, language, requested date and time, estimated length, project description and, if you provide them, placement, size, style, comment and reference images.",
       "Contact form: first name, last name, email address, subject and message.",
-      "Security: a non-reversible fingerprint of your IP address is used for a few minutes to limit abuse (repeated submissions)."
+      "Security: a non-reversible fingerprint of your email address is used for one hour at most to limit abuse (repeated submissions)."
     ],
     "purposesTitle": "Purposes and legal bases",
     "purposes": [
@@ -362,19 +362,19 @@
       "Protecting the website against abuse and spam (legitimate interest, Art. 6(1)(f) GDPR)."
     ],
     "recipientsTitle": "Recipients and processors",
-    "recipients": "Your data is only accessible to the artist. It is hosted and processed by technical providers: Vercel (website hosting), Neon (database), Google (sending emails via Gmail, private Google Calendar and private Google Sheets tracking). These providers may process data outside the European Union under appropriate safeguards (EU-US Data Privacy Framework or standard contractual clauses). Your data is never sold or used for advertising.",
+    "recipients": "Your data is only accessible to the artist. It is hosted and processed by technical providers: GitHub (hosting of the website pages, which does not receive your requests) and Google (processing of requests via Google Apps Script, private Google Sheets tracking, private Google Calendar, private Google Drive folder and sending emails via Gmail). These providers may process data outside the European Union under appropriate safeguards (EU-US Data Privacy Framework or standard contractual clauses). Your data is never sold or used for advertising.",
     "retentionTitle": "Retention periods",
     "retention": [
       "Reference images: automatically deleted {attachmentDays} days after the appointment or the closing of the request.",
       "Appointment requests and messages: anonymised {months} months after the appointment or receipt.",
-      "Anti-abuse data: a few minutes, 24 hours at most."
+      "Anti-abuse data: one hour at most."
     ],
     "rightsTitle": "Your rights",
     "rights": "You may request access to, rectification, erasure or portability of your data, or object to its processing, by writing to {email}. You also have the right to lodge a complaint with the Belgian Data Protection Authority (dataprotectionauthority.be).",
     "cookiesTitle": "Cookies",
-    "cookies": "This website uses no analytics, advertising or social media cookies. Only strictly necessary cookies may be set: remembering your chosen language (NEXT_LOCALE) and, for the administrator only, the private area session cookie. No consent banner is therefore required.",
+    "cookies": "This website sets no cookies and uses no analytics, advertising or social media tools. Only two strictly necessary items are stored in your browser: your chosen language (slc-locale) and, for the duration of your visit, the fact that the intro animation has already been shown. No consent banner is therefore required.",
     "securityTitle": "Security",
-    "security": "All exchanges are encrypted (HTTPS). Reference images are stored privately and can only be accessed after the artist has signed in.",
+    "security": "All exchanges are encrypted (HTTPS). Reference images are stored in a private Google Drive folder that only the artist can access.",
     "updated": "Last updated: {date}"
   },
   "notFound": {

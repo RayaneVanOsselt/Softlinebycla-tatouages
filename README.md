@@ -1,14 +1,24 @@
 # SOFTLINEBY.CLA
 
-Site officiel de SOFTLINEBY.CLA, artiste tatoueuse fine line : portfolio, réservation mensuelle validée manuellement, e-mails automatiques, Google Agenda, Google Sheets et administration privée. Disponible en français, néerlandais et anglais.
+Site officiel de SOFTLINEBY.CLA, artiste tatoueuse fine line : portfolio, réservation mensuelle validée manuellement, e-mails automatiques, Google Agenda et suivi dans Google Sheets. Disponible en français, néerlandais et anglais.
+
+- **Site** : <https://rayanevanosselt.github.io/Softlinebycla-tatouages/> (GitHub Pages, gratuit)
+- **Réservations** : un Google Sheet avec le moteur `apps-script/Code.gs` (Google Apps Script, gratuit)
 
 | Document | Pour qui |
 |---|---|
-| **[docs/GUIDE-DEMARRAGE.md](docs/GUIDE-DEMARRAGE.md)** | Mise en ligne pas à pas (Vercel, Neon, Gmail, Google). **À lire en premier.** |
-| [docs/GUIDE-ADMIN.md](docs/GUIDE-ADMIN.md) | Utilisation quotidienne de l'administration, sauvegarde et restauration |
+| **[docs/GUIDE-DEMARRAGE.md](docs/GUIDE-DEMARRAGE.md)** | Mise en ligne pas à pas (GitHub Pages, Google Sheet). **À lire en premier.** |
+| [docs/GUIDE-ADMIN.md](docs/GUIDE-ADMIN.md) | Utilisation au quotidien : disponibilités, demandes, portfolio, sauvegarde |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Direction artistique, design system, architecture, sécurité, tests |
 
-## Lancer le site en local
+## Modifier le site sans rien installer
+
+- Informations (e-mail, réseaux sociaux, mentions légales, adresse du moteur) : `content/site.json`
+- Portfolio : `content/portfolio.json` et les photos dans `content/photos/`
+
+Modifiez-les directement sur GitHub (icône crayon) : le site se republie tout seul en 2 à 4 minutes.
+
+## Lancer le site en local (développeurs)
 
 Prérequis : Node.js 20.9 ou plus.
 
@@ -20,45 +30,48 @@ npm install
 cp .env.example .env.local
 ```
 
-Dans `.env.local`, mettez votre adresse dans `ADMIN_EMAILS`. Lancez ensuite :
+Dans un premier terminal, lancez le moteur de réservation de démonstration :
+
+```bash
+npm run mock-api
+```
+
+Dans un second terminal :
 
 ```bash
 npm run dev
 ```
 
-Le site s'ouvre sur <http://localhost:3000>. Sans `DATABASE_URL`, une base PostgreSQL embarquée est créée dans `.data/` et le portfolio y est importé automatiquement : il n'y a rien à installer.
-Sans SMTP configuré, aucun e-mail n'est envoyé : leur contenu s'affiche dans le terminal et ils sont marqués « non envoyé » dans l'admin. Le lien de connexion admin s'affiche lui aussi dans le terminal.
+Le site s'ouvre sur <http://localhost:3000>.
 
 ## Commandes
 
 | Commande | Rôle |
 |---|---|
 | `npm run dev` | développement |
-| `npm run build` | migrations de la base, puis build de production (utilisé par Vercel) |
-| `npm test` | tests unitaires et d'intégration (base embarquée) |
+| `npm run build` | optimisation des médias, puis export statique dans `out/` (utilisé par GitHub Actions) |
+| `npm run mock-api` | moteur de réservation de démonstration sur le port 8787 |
+| `npm test` | tests du moteur de réservation et des traductions |
 | `npm run typecheck` | vérification TypeScript stricte |
-| `npm run db:generate` | génère une migration après modification de `src/lib/db/schema.ts` |
-| `npm run db:migrate` | applique les migrations sur `DATABASE_URL` |
-| `npm run jobs:run` | exécute la file de tâches (e-mails, Google) manuellement |
-| `npm run assets:prepare` | régénère logos, favicons et images du portfolio depuis `ressources/` |
+| `npm run media` | régénère les photos et vidéos optimisées depuis `content/photos/` |
+| `npm run brand:build` | régénère logos, favicons et image de partage depuis `ressources/` |
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript strict, Tailwind CSS 4, Motion, next-intl, Drizzle ORM, PostgreSQL (Neon) / PGlite, Zod, Nodemailer (Gmail SMTP), Google Calendar et Sheets en REST, Vercel Blob, Vitest.
+Next.js 16 (App Router, export statique), React 19, TypeScript strict, Tailwind CSS 4, Motion, next-intl, sharp, Vitest. Moteur de réservation : Google Apps Script (Sheets, Agenda, Drive, Gmail). Publication : GitHub Actions vers GitHub Pages.
 
 ## Structure
 
 ```
+apps-script/         moteur de réservation (à coller dans le Google Sheet)
+content/             site.json, portfolio.json, photos d'origine
 messages/            textes FR / NL / EN
 ressources/          fichiers d'origine fournis (logo, charte, photos, vidéos)
 public/brand         logo officiel détouré, icônes, image de partage
-public/portfolio     photos et vidéos optimisées
-drizzle/             migrations SQL versionnées
-scripts/             migrations, préparation des médias, file de tâches
+scripts/             préparation des médias et du logo, moteur de démonstration
 src/app/[locale]     pages publiques
-src/app/admin        administration privée
-src/app/api          routes serveur
-src/components       interface (site, accueil, portfolio, réservation, admin)
-src/lib              métier : réservation, e-mails, Google, sécurité, base de données
-tests/               tests Vitest
+src/components       interface (site, accueil, portfolio, réservation)
+src/lib              configuration, client du moteur, SEO
+tests/               tests Vitest (le moteur Apps Script est testé avec des doublures Google)
+.github/workflows    publication automatique sur GitHub Pages
 ```

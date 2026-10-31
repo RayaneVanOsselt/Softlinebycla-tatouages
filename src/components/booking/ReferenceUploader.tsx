@@ -15,7 +15,7 @@ export interface PreparedFile {
 
 const MAX_FILES = 3;
 const MAX_SIDE = 1800;
-const MAX_BYTES = 1.3 * 1024 * 1024; // 3 images ≤ 4 Mo au total (limite des fonctions Vercel : 4,5 Mo)
+const MAX_BYTES = 1.3 * 1024 * 1024; // 3 images ≤ 4 Mo au total : envoi rapide vers Google Apps Script
 
 /** Compression dans le navigateur (≤ 1800 px, JPEG) : envoi rapide et respect de la limite serveur. Les métadonnées EXIF (GPS…) disparaissent. */
 async function prepare(file: File): Promise<PreparedFile> {

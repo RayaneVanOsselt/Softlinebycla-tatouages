@@ -7,7 +7,7 @@
 | `Logo Officiel .jpg` (624×621, monogramme SC + mot-symbole) | Détouré sans redessin. Versions encre et crème (fonds sombres), monogramme seul, favicon, image Open Graph. Animation d'introduction. |
 | `Charte Graphique .JPG` | 5 couleurs exactes : Light Brown `#98755B`, Cream `#E2D1C2`, Dark Chocolate `#442913`, Sand `#D4BBAC`, Nut Brown `#5C3422`. |
 | `Idée de logo .PNG` | Pistes non retenues comme logo officiel : non utilisé. |
-| 25 photos (878–1170 × 1560) + 2 vidéos H.264 | Bandes noires retirées (sans toucher au tatouage), 1800 px max, servies en AVIF/WebP. Classées en 26 projets et 5 catégories **réellement présentes** : Floral & nature, Lettrage, Minimaliste, Illustration, Études & flash (peaux d'entraînement). |
+| 25 photos (878–1170 × 1560) + 2 vidéos H.264 | Bandes noires retirées (sans toucher au tatouage), 1800 px max, servies en WebP. Classées en 26 projets et 5 catégories **réellement présentes** : Floral & nature, Lettrage, Minimaliste, Illustration, Études & flash (peaux d'entraînement). |
 | 4 maquettes d'inspiration + « Choose a time » + rufixbarber.com | Voir §2. |
 
 Points d'attention :
@@ -51,30 +51,30 @@ Contrastes vérifiés : chocolat sur ivoire > 13:1, nut sur ivoire ≈ 10:1, cr�
 ## 4. Architecture
 
 ```
-Next.js 16 (App Router, TypeScript strict) — Vercel
-├─ /[locale] (fr | nl | en, URL localisées : /fr/reservation, /nl/afspraak, /en/booking…)
-│   pages ISR (5 min) + revalidation immédiate après modification dans l'admin
-├─ /admin (privé, noindex, lien magique)
-├─ /api (route handlers : disponibilités, demandes, contact, réponse client, cron, upload, export RGPD)
-└─ src/lib
-   ├─ booking/slots.ts      moteur de disponibilités (fonctions pures, testées)
-   ├─ booking/service.ts    transactions, statuts, décisions, expiration
-   ├─ jobs/                 file de tâches idempotente (e-mails, Google) + reprise
-   ├─ email/                Nodemailer (Gmail SMTP), modèles HTML FR/NL/EN, .ics
-   ├─ google/               JWT compte de service (crypto Node), Calendar v3, Sheets v4
-   ├─ auth/                 lien magique, sessions hachées en base
-   └─ db/                   Drizzle ORM + PostgreSQL (Neon) / PGlite en local et en tests
+GitHub Pages — site 100 % statique (Next.js 16, output: "export", TypeScript strict)
+├─ /[locale] (fr | nl | en : /fr/booking, /nl/portfolio, /en/contact…)
+│   contenus lus au build depuis content/site.json et content/portfolio.json
+├─ src/lib/api.ts        client du moteur (fetch en text/plain : requête « simple », sans pré-vérification CORS)
+└─ .github/workflows/deploy.yml   tests + build + publication à chaque push sur main
+
+Google Apps Script — apps-script/Code.gs, lié au Google Sheet (application Web, accès « Tout le monde »)
+├─ doGet  : disponibilités d'un mois, lecture d'une proposition (jeton)
+├─ doPost : demande de rendez-vous, message de contact, réponse du client à une proposition
+├─ onEditDecision : décisions de l'artiste dans la colonne « ➜ Décision »
+├─ hourlyMaintenance : expirations, fin automatique, purge RGPD, nouvel essai des e-mails, nouvelles journées
+└─ services : SpreadsheetApp (données), CalendarApp (agenda), DriveApp (images privées), MailApp (e-mails), LockService, CacheService
 ```
+
+Le moteur Apps Script ne dépend d'aucune bibliothèque : le même fichier est exécuté dans Node par les tests et par `npm run mock-api` (`tests/support/gas.ts`, doublures des services Google).
 
 ### Fiabilité des réservations
 
-1. La **base PostgreSQL est la source de vérité.** Google Agenda et Google Sheets sont des copies synchronisées.
-2. **Contrainte d'exclusion** `EXCLUDE USING gist (tstzrange(start_at, end_at) WITH &&) WHERE status IN (PENDING, RESCHEDULE_PROPOSED, CONFIRMED)` : Postgres rend physiquement impossibles deux réservations bloquantes qui se chevauchent, même avec des requêtes simultanées.
-3. Chaque demande est créée dans **une seule transaction** : expiration des demandes échues, vérification des heures ouvertes, des périodes bloquées et de Google, insertion, historique, mise en file des e-mails et des synchronisations.
-4. **File de tâches** (outbox) : réclamation atomique (`FOR UPDATE SKIP LOCKED`), délai exponentiel, clés de déduplication (un e-mail n'est jamais envoyé deux fois), statuts *Fait / En file / Échec / Non configuré*. Exécution juste après la réponse (`after()`), à chaque visite du tableau de bord, via la tâche Vercel quotidienne et à la demande.
-5. **Google Agenda** : identifiant d'événement déterministe (`slc` + id de réservation), donc création idempotente. Statut *tentative/transparent* avant validation, *confirmed/opaque* après. Les événements créés par le site sont exclus du calcul des occupations.
-6. **Google Sheets** : mise à jour par ID réservation (jamais de doublon), écriture `RAW` (aucune formule injectable), reconstruction complète possible.
-7. **Fuseau Europe/Brussels** : toutes les heures sont stockées en UTC et converties avec `@date-fns/tz`. Les changements d'heure été/hiver sont testés.
+1. **Le Google Sheet est la source de vérité.** Google Agenda est une copie synchronisée.
+2. **Verrou global** (`LockService`) : toute écriture (demande, décision, réponse client, expiration) relit l'état puis vérifie les conflits sous verrou. Deux demandes simultanées sur le même créneau ne peuvent donc jamais être enregistrées toutes les deux.
+3. Chaque demande vérifie, dans l'ordre : expiration des demandes échues, heures ouvertes, indisponibilités, occupations Google Agenda, demandes et rendez-vous bloquants.
+4. **E-mails** : chaque envoi est consigné dans l'onglet Journal ; un échec est réessayé par la maintenance horaire. Une panne Gmail ou Agenda ne fait jamais perdre la demande.
+5. **Google Agenda** : événement gris (« ⏳ Demande ») à la réception, orange (confirmé) après acceptation, retiré en cas de refus, d'annulation ou d'expiration. Les événements créés par le moteur (étiquette `slcRef`) sont exclus du calcul des occupations.
+6. **Fuseau Europe/Brussels** : les instants sont stockés en ISO UTC (colonnes techniques) et convertis avec `Utilities.formatDate`. Les changements d'heure été/hiver sont testés.
 
 ### Statuts
 
@@ -89,36 +89,36 @@ PENDING ──accepter──▶ CONFIRMED ──▶ COMPLETED
    └─annuler──▶ CANCELLED
 ```
 
-Chaque transition est validée (`booking/status.ts`) et historisée dans `booking_events`.
+Chaque transition est validée (`canTransition`) et notée dans la colonne Historique.
 
-### Modèle de données (`src/lib/db/schema.ts`)
+### Modèle de données (onglets du Google Sheet)
 
-`bookings`, `booking_events` (historique), `booking_attachments` (images de référence privées, en base), `availability_slots` (un enregistrement = une heure ouverte), `blocked_periods`, `projects`, `media`, `categories`, `contact_messages`, `jobs`, `settings` (contenus et paramètres administrables), `admin_login_tokens`, `admin_sessions`, `rate_limits`. Migrations versionnées dans `drizzle/`.
+`Réservations` (une ligne par demande ; colonnes de suivi, colonnes de décision, colonnes techniques masquées), `Disponibilités` (une ligne par jour, une case par heure), `Indisponibilités`, `Messages`, `Paramètres`, `Journal`. Identifiants techniques (feuille, agenda, dossier Drive, secret de hachage) dans les propriétés du script.
 
 ## 5. Sécurité et RGPD
 
-- Secrets uniquement côté serveur. Aucune variable sensible n'est préfixée `NEXT_PUBLIC_`.
-- Validation Zod côté serveur sur toutes les entrées, et HTML des e-mails échappé.
-- CSRF : vérification de l'en-tête `Origin` sur les routes API ; protection native des Server Actions.
-- Limitation de fréquence stockée en base (empreinte HMAC de l'IP), champ piège anti-robots et délai minimum de remplissage.
-- En-têtes de sécurité : CSP stricte (aucun domaine tiers), HSTS, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`.
-- Images de référence : type vérifié par signature binaire, ré-encodées (suppression EXIF/GPS), 3 maximum, servies uniquement à l'admin connectée, supprimées automatiquement après le délai défini.
-- Anonymisation automatique des anciennes demandes, export et effacement à la demande, contenu des e-mails purgé du journal après 30 jours.
-- Cookies strictement nécessaires uniquement (langue et session admin) : pas de bannière de consentement.
-- Les journaux masquent les adresses e-mail.
+- Aucun secret dans le dépôt ni dans le site : l'URL du moteur est publique par nature ; le secret de hachage reste dans les propriétés du script.
+- Validation côté moteur de toutes les entrées, et HTML des e-mails échappé.
+- Limitation de fréquence (`CacheService`, empreinte de l'adresse e-mail, une heure au maximum), champ piège anti-robots et délai minimum de remplissage.
+- Jetons de proposition : seule leur empreinte SHA-256 (avec secret) est enregistrée ; un jeton est à usage unique et expire avec la proposition.
+- Images de référence : 3 maximum, compressées dans le navigateur (suppression EXIF/GPS), type vérifié, rangées dans un dossier Google Drive privé, supprimées automatiquement après le délai défini.
+- Anonymisation automatique des anciennes demandes et suppression des anciens messages.
+- Aucun cookie : seuls la langue (`localStorage`) et l'intro déjà vue (`sessionStorage`) sont mémorisées, donc pas de bannière de consentement.
+- L'API ne renvoie jamais de donnée client : les disponibilités ne contiennent que des états de créneaux.
 
 ## 6. Tests
 
-`npm test` lance 29 tests (Vitest, avec une vraie base Postgres embarquée) :
+`npm test` (Vitest) exécute le vrai `apps-script/Code.gs` avec des doublures des services Google :
 
-- moteur de créneaux : fermé par défaut, plage 11–20 h, dernier créneau terminant à 20 h, heures consécutives, délai de prévenance, été/hiver ;
-- réservations : statut `PENDING`, file d'e-mails et de synchronisation, **concurrence** (3 demandes simultanées, 1 seule acceptée), contrainte d'exclusion, périodes bloquées ;
-- décisions : confirmation avec `.ics` (jamais avant validation), refus qui libère le créneau, durée modifiée qui recalcule les conflits, proposition acceptée par le client, jeton invalide ;
-- robustesse : expiration, panne SMTP avec reprise sans doublon, Google non configuré qui n'est jamais présenté comme « envoyé » ;
-- e-mails : échappement HTML, langue du client, heure de Bruxelles ;
-- contact : validation, `reply-to` vers le client, accusé de réception ;
-- traductions : mêmes clés en FR, NL et EN.
+- fuseau Europe/Brussels : heure d'hiver, d'été et jours de changement d'heure ;
+- disponibilités : fermé par défaut, plage 11–20 h, heures consécutives, délai de prévenance, indisponibilités et Google Agenda, aucune donnée client exposée ;
+- demandes : statut « En attente », blocage du créneau, deux e-mails sans confirmation, refus des chevauchements, validation et anti-robots, images privées, panne d'e-mail ou d'agenda sans perte ;
+- décisions : acceptation avec durée allongée et `.ics`, refus, proposition confirmée seulement par le client, jeton invalide, message clair sans date ni heure, transitions cohérentes ;
+- automatismes : expiration, purge RGPD ;
+- contact : `reply-to` vers le client, accusé de réception ;
+- e-mails : échappement HTML, langue du client ;
+- traductions : mêmes clés en FR, NL et EN, aucun texte vide.
 
-Vérifié dans le navigateur (développement) : toutes les pages dans les 3 langues, hreflang, sitemap, intro, hero vidéo, sélection horizontale, galerie, filtres, visionneuse (clavier, focus), parcours complet de réservation (mensuel, durée 2 h, ticket, formulaire, succès), connexion admin, ouverture de 12 jours, acceptation avec durée allongée, affichage mobile 375 px.
+Les tests et le build tournent à chaque publication (GitHub Actions) : une erreur bloque la mise en ligne et l'ancienne version reste en place.
 
-**Non vérifié faute d'accès :** l'envoi réel par Gmail, la connexion réelle à Google Agenda et Sheets, et le déploiement Vercel/Neon. Ces trois points se testent en 2 clics après configuration (Admin, page Synchronisation).
+**À vérifier après installation** (impossible sans votre compte Google) : l'envoi réel par Gmail, l'agenda et le dossier Drive. Voir l'étape 8 de [GUIDE-DEMARRAGE.md](GUIDE-DEMARRAGE.md).

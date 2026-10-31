@@ -336,7 +336,7 @@
     "address": "Adres",
     "contact": "Contact",
     "hostingTitle": "Hosting",
-    "hosting": "De website wordt gehost door Vercel Inc. (vercel.com). De databank wordt geleverd door Neon (neon.tech).",
+    "hosting": "De website wordt gehost door GitHub Pages, een dienst van GitHub, Inc. (github.com). Afspraakaanvragen en berichten worden verwerkt met de diensten van Google (Google Apps Script, Google Sheets, Google Agenda, Google Drive en Gmail), geleverd door Google Ireland Limited.",
     "ipTitle": "Intellectuele eigendom",
     "ip": "De foto’s, video’s, ontwerpen en tatoeages op deze website zijn eigendom van hun maakster. Elke reproductie of hergebruik zonder voorafgaande schriftelijke toestemming is verboden.",
     "liabilityTitle": "Aansprakelijkheid",
@@ -353,7 +353,7 @@
     "data": [
       "Afspraakaanvraag: voornaam, achternaam, e-mailadres, taal, gewenste datum en uur, geschatte duur, projectbeschrijving en, als je die meegeeft, plaats op het lichaam, grootte, stijl, opmerking en referentiebeelden.",
       "Contactformulier: voornaam, achternaam, e-mailadres, onderwerp en bericht.",
-      "Beveiliging: een niet-omkeerbare afdruk van je IP-adres wordt enkele minuten gebruikt om misbruik (herhaalde inzendingen) te beperken."
+      "Beveiliging: een niet-omkeerbare afdruk van je e-mailadres wordt maximaal één uur gebruikt om misbruik (herhaalde inzendingen) te beperken."
     ],
     "purposesTitle": "Doeleinden en rechtsgronden",
     "purposes": [
@@ -362,19 +362,19 @@
       "De website beschermen tegen misbruik en spam (gerechtvaardigd belang, art. 6.1.f AVG)."
     ],
     "recipientsTitle": "Ontvangers en verwerkers",
-    "recipients": "Je gegevens zijn enkel toegankelijk voor de artiest. Ze worden gehost en verwerkt door technische dienstverleners: Vercel (hosting van de website), Neon (databank), Google (verzending van e-mails via Gmail, privé-agenda in Google Agenda en privé-overzicht in Google Sheets). Deze dienstverleners kunnen gegevens buiten de Europese Unie verwerken met passende waarborgen (EU-US Data Privacy Framework of modelcontractbepalingen). Je gegevens worden nooit verkocht of voor reclame gebruikt.",
+    "recipients": "Je gegevens zijn enkel toegankelijk voor de artiest. Ze worden gehost en verwerkt door technische dienstverleners: GitHub (hosting van de pagina’s van de website, ontvangt je aanvragen niet) en Google (verwerking van aanvragen via Google Apps Script, privé-overzicht in Google Sheets, privé-agenda in Google Agenda, privémap in Google Drive en verzending van e-mails via Gmail). Deze dienstverleners kunnen gegevens buiten de Europese Unie verwerken met passende waarborgen (EU-US Data Privacy Framework of modelcontractbepalingen). Je gegevens worden nooit verkocht of voor reclame gebruikt.",
     "retentionTitle": "Bewaartermijnen",
     "retention": [
       "Referentiebeelden: automatisch verwijderd {attachmentDays} dagen na de afspraak of de afsluiting van de aanvraag.",
       "Afspraakaanvragen en berichten: geanonimiseerd {months} maanden na de afspraak of de ontvangst.",
-      "Gegevens tegen misbruik: enkele minuten tot maximaal 24 uur."
+      "Gegevens tegen misbruik: maximaal één uur."
     ],
     "rightsTitle": "Jouw rechten",
     "rights": "Je kunt inzage, verbetering, verwijdering of overdraagbaarheid van je gegevens vragen, of bezwaar maken tegen de verwerking, door te schrijven naar {email}. Je hebt ook het recht om klacht in te dienen bij de Gegevensbeschermingsautoriteit (gegevensbeschermingsautoriteit.be).",
     "cookiesTitle": "Cookies",
-    "cookies": "Deze website gebruikt geen analytische, advertentie- of socialemediacookies. Enkel strikt noodzakelijke cookies kunnen geplaatst worden: het onthouden van de gekozen taal (NEXT_LOCALE) en, enkel voor de beheerder, de sessiecookie van de privéruimte. Een toestemmingsbanner is dus niet nodig.",
+    "cookies": "Deze website plaatst geen cookies en gebruikt geen analytische, advertentie- of socialemediatools. Enkel twee strikt noodzakelijke gegevens worden in je browser bewaard: de gekozen taal (slc-locale) en, tijdens je bezoek, het feit dat de introductieanimatie al getoond werd. Een toestemmingsbanner is dus niet nodig.",
     "securityTitle": "Beveiliging",
-    "security": "Alle communicatie is versleuteld (HTTPS). Referentiebeelden worden privé bewaard en zijn enkel toegankelijk na aanmelding van de artiest.",
+    "security": "Alle communicatie is versleuteld (HTTPS). Referentiebeelden worden bewaard in een privémap in Google Drive, enkel toegankelijk voor de artiest.",
     "updated": "Laatst bijgewerkt: {date}"
   },
   "notFound": {
