@@ -1,0 +1,392 @@
+{
+  "meta": {
+    "siteDescription": "SOFTLINEBY.CLA — delicate, custom fine line tattoos: floral, lettering, symbols. Explore the work and request your appointment online.",
+    "home": {
+      "title": "Custom fine line tattoos",
+      "description": "Fine, delicate tattoos designed for you. Discover the world of SOFTLINEBY.CLA and request your appointment online."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "All of SOFTLINEBY.CLA’s work: floral fine line, lettering, minimal pieces, illustration and studies."
+    },
+    "about": {
+      "title": "About",
+      "description": "The world, approach and way of working of SOFTLINEBY.CLA, fine line tattoo artist."
+    },
+    "booking": {
+      "title": "Booking",
+      "description": "Pick a time from the available slots and send your appointment request. Personally confirmed by the artist."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "A question or a project idea? Write directly to SOFTLINEBY.CLA."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "How SOFTLINEBY.CLA handles your personal data."
+    },
+    "legal": {
+      "title": "Legal notice",
+      "description": "Legal information for the SOFTLINEBY.CLA website."
+    },
+    "response": {
+      "title": "Your answer"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "booking": "Booking",
+    "contact": "Contact",
+    "bookCta": "Book an appointment",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skip": "Skip to content",
+    "language": "Language",
+    "mainNav": "Main navigation"
+  },
+  "intro": {
+    "skip": "Skip intro"
+  },
+  "home": {
+    "eyebrow": "Fine line tattoos · by appointment",
+    "heroTitle": "The art of the line",
+    "heroTitleAccent": "softly drawn",
+    "heroText": "Fine, delicate tattoos, designed for you and drawn with precision. Every piece begins with a conversation, an idea — and the right line.",
+    "ctaBook": "Book an appointment",
+    "ctaWork": "Explore my work",
+    "scroll": "Scroll",
+    "heroMediaLabel": "Video excerpt of a finished piece",
+    "pauseVideo": "Pause video",
+    "playVideo": "Play video",
+    "manifestoLabel": "Manifesto",
+    "manifesto": "A fine line forgives nothing. It takes time, attention and a steady hand. Here, every project is drawn for one skin only: yours.",
+    "aboutLabel": "The artist",
+    "aboutTitle": "Behind the line",
+    "aboutText": "SOFTLINEBY.CLA is a world of fine, elegant tattooing: flowers, lettering, symbols and custom compositions. A gentle, attentive approach that takes the time to understand your story before the first line is drawn.",
+    "aboutLink": "Discover my approach",
+    "pillars": [
+      {
+        "title": "Precision",
+        "text": "Crisp lines and details designed to age beautifully."
+      },
+      {
+        "title": "Made for you",
+        "text": "Every design is adapted to your skin, the placement and your story."
+      },
+      {
+        "title": "Care",
+        "text": "A calm moment, clear explanations, no question too small."
+      }
+    ],
+    "featuredLabel": "Work",
+    "featuredTitle": "A selection",
+    "featuredText": "A few chosen pieces, from floral to lettering. Each tattoo is shown exactly as it was done.",
+    "featuredAll": "View the full portfolio",
+    "processLabel": "Booking",
+    "processTitle": "How it works",
+    "steps": [
+      {
+        "title": "Explore",
+        "text": "Browse the work to find the style that speaks to you."
+      },
+      {
+        "title": "Pick a time",
+        "text": "Choose a day and time from the availability opened by the artist."
+      },
+      {
+        "title": "Describe your project",
+        "text": "Size, placement, ideas, reference images: the more precise, the better."
+      },
+      {
+        "title": "Send your request",
+        "text": "The slot is held for you while your project is being reviewed."
+      },
+      {
+        "title": "Personal confirmation",
+        "text": "You receive the answer by email: a confirmation, or a suggestion for another time."
+      }
+    ],
+    "processNote": "A request is not an appointment yet: it is only confirmed once the artist has personally approved it.",
+    "ctaLabel": "Your project",
+    "ctaTitle": "Your idea deserves the right line.",
+    "ctaText": "Pick a time that suits you and tell me about your project: you’ll receive a personal reply.",
+    "ctaContact": "Ask a question"
+  },
+  "portfolio": {
+    "eyebrow": "Portfolio",
+    "title": "The work",
+    "intro": "Fine line, floral, lettering and custom compositions. Click an image to enlarge it.",
+    "all": "All",
+    "filterLabel": "Filter by style",
+    "empty": "No work in this category yet.",
+    "open": "Enlarge: {title}",
+    "details": "View project",
+    "close": "Close",
+    "prev": "Previous image",
+    "next": "Next image",
+    "counter": "{current} / {total}",
+    "video": "Video",
+    "back": "Back to portfolio",
+    "similar": "In the same style",
+    "style": "Style",
+    "year": "Year",
+    "media": "{count, plural, one {# item} other {# items}}",
+    "bookSimilar": "A project in this style?",
+    "bookSimilarCta": "Request an appointment",
+    "lightboxLabel": "Image viewer"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "One line, one story",
+    "intro": "SOFTLINEBY.CLA is a tattoo world where the finesse of the line guides every piece: delicate, legible work designed to feel like you.",
+    "approachTitle": "My approach",
+    "approach": "Fine line is all about precision: thin lines, soft shading and details that must stay legible over time. Every project is adapted to the placement, the size and your skin, so the tattoo ages gracefully.",
+    "processTitle": "The creative process",
+    "process": "It all starts with your idea. We refine it together — style, placement, proportions — then the design is prepared for you and can still be adjusted before the needle comes in.",
+    "experienceTitle": "The experience",
+    "experience": "A calm, attentive moment: we take the time to explain, answer your questions and guide you all the way through aftercare.",
+    "universeTitle": "The style",
+    "universe": "Flowers and botanicals, handwritten lettering, minimal symbols and small illustrations: a soft visual language, feminine or neutral, always drawn with care.",
+    "cta": "View the work"
+  },
+  "booking": {
+    "eyebrow": "Calendar",
+    "title": "Choose",
+    "titleAccent": "a time",
+    "intro": "Tell us the estimated length of your project, then pick a day and time from the available slots.",
+    "notice": "Your request will be reviewed personally: it only becomes an appointment once confirmed by email.",
+    "stepsLabel": "Booking steps",
+    "steps": {
+      "time": "Pick a time",
+      "details": "Describe the project",
+      "done": "Request sent"
+    },
+    "duration": {
+      "label": "Estimated length",
+      "hint": "Not sure? Pick an estimate — the artist will adjust it with you.",
+      "option": "{count} h"
+    },
+    "calendar": {
+      "label": "Availability calendar",
+      "prev": "Previous month",
+      "next": "Next month",
+      "loading": "Loading availability…",
+      "error": "Availability could not be loaded.",
+      "retry": "Try again",
+      "empty": "No availability this month for this length.",
+      "tryNext": "See next month",
+      "tryShorter": "Try a shorter length or another month.",
+      "legend": {
+        "available": "Available",
+        "held": "Pending",
+        "full": "Fully booked",
+        "closed": "Closed"
+      },
+      "dayLabel": "{date} — {state}",
+      "selected": "selected"
+    },
+    "slots": {
+      "label": "Available times",
+      "chooseDay": "Pick a day in the calendar to see the times.",
+      "available": "Available",
+      "held": "Pending",
+      "heldHint": "Someone has already requested this slot; it may become free again.",
+      "unavailable": "Unavailable",
+      "none": "No free times left on this day."
+    },
+    "summary": {
+      "title": "Your request",
+      "empty": "Select a length, a day and a time.",
+      "date": "Date",
+      "time": "Time",
+      "duration": "Estimated length",
+      "status": "Status",
+      "statusValue": "To be confirmed by the artist",
+      "continue": "Continue",
+      "back": "Change time",
+      "change": "Change"
+    },
+    "form": {
+      "title": "Your project",
+      "intro": "This information helps the artist review your request. Fields marked with * are required.",
+      "identity": "Your details",
+      "project": "The project",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "description": "Project description",
+      "descriptionHint": "Motif, style, idea, meaning… (at least 20 characters)",
+      "placement": "Placement",
+      "placementHint": "E.g. inner forearm, ankle, nape of the neck",
+      "size": "Approximate size (cm)",
+      "sizeHint": "E.g. 8 × 5",
+      "style": "Style or type of project",
+      "styleOptions": {
+        "": "— Choose —",
+        "fine-line": "Fine line",
+        "floral": "Floral & nature",
+        "lettering": "Lettering",
+        "minimal": "Minimal / symbol",
+        "illustration": "Illustration",
+        "other": "Other / not sure"
+      },
+      "comment": "Additional comment",
+      "references": "Reference images",
+      "referencesHint": "Up to 3 images (JPG, PNG or WebP). They stay private and are only visible to the artist.",
+      "addImages": "Add images",
+      "removeImage": "Remove {name}",
+      "consent": "I agree that my data will be used to process my appointment request, in accordance with the",
+      "privacyLink": "privacy policy",
+      "optional": "optional",
+      "submit": "Send my request",
+      "submitting": "Sending…",
+      "back": "Back to calendar",
+      "honeypot": "Do not fill in this field"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "invalid_email": "Invalid email address.",
+      "too_short": "A few more details, please.",
+      "too_long": "This text is too long.",
+      "consent_required": "Your consent is needed to send the request.",
+      "invalid": "Invalid value.",
+      "SLOT_UNAVAILABLE": "This slot has just been taken or is no longer available. Please choose another one.",
+      "SLOT_HELD": "Another request is already pending for this slot. Please choose another one.",
+      "TOO_SOON": "This slot is too soon. Please choose a later time.",
+      "OUTSIDE_RANGE": "This slot cannot be booked.",
+      "RATE_LIMITED": "Too many attempts. Please wait a few minutes before trying again.",
+      "SPAM": "Your submission could not be validated. Please try again in a few seconds.",
+      "generic": "Something went wrong. Your request was not sent; please try again.",
+      "network": "Unable to connect. Check your network and try again.",
+      "file_type": "Unsupported format (JPG, PNG or WebP only).",
+      "file_count": "3 images maximum.",
+      "file_size": "Image too large, even after compression."
+    },
+    "success": {
+      "title": "Request sent",
+      "text": "Thank you {name}! Your request has been recorded. The slot is held for you while it awaits the artist’s confirmation.",
+      "pending": "This is not a confirmed appointment yet: you’ll receive an email as soon as your request has been reviewed.",
+      "reference": "Reference",
+      "emailSent": "You will receive a summary of your request by email.",
+      "home": "Back to home",
+      "portfolio": "View the portfolio"
+    },
+    "respond": {
+      "eyebrow": "New time proposed",
+      "title": "Does this time suit you?",
+      "intro": "Hello {name}, the artist is proposing the following slot. It will only be confirmed once you accept it.",
+      "message": "Message from the artist",
+      "accept": "Accept this slot",
+      "decline": "Decline the proposal",
+      "confirmDecline": "Declining will close your request. Continue?",
+      "acceptedTitle": "You’re booked in!",
+      "accepted": "Your appointment is confirmed. A summary has been sent to you by email.",
+      "declinedTitle": "Proposal declined",
+      "declined": "Noted: your request is now closed. You’re welcome to make a new one at any time.",
+      "expiredTitle": "Proposal expired",
+      "expired": "This link is no longer valid: the proposal has expired or has already been answered.",
+      "newRequest": "Make a new request",
+      "expiresAt": "Please answer before {date}"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Write to the artist",
+    "intro": "A question, a project idea, a special request? Your message goes straight to SOFTLINEBY.CLA.",
+    "bookingHint": "For an appointment, the easiest way is to use the calendar.",
+    "bookingLink": "Open the calendar",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "subject": "Subject",
+    "message": "Message",
+    "consent": "I agree that my data will be used to reply to my message, in accordance with the",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "successTitle": "Message sent",
+    "success": "Thank you {name}! Your message has been recorded and passed on. You’ll receive a reply by email.",
+    "another": "Write another message",
+    "social": "Follow the work",
+    "emailDirect": "Or by email"
+  },
+  "footer": {
+    "tagline": "Fine line tattoos, by appointment.",
+    "navTitle": "Explore",
+    "bookingTitle": "Appointments",
+    "bookingText": "Requests are personally confirmed by the artist.",
+    "followTitle": "Follow",
+    "legalTitle": "Information",
+    "privacy": "Privacy",
+    "legal": "Legal notice",
+    "cookies": "No advertising cookies or trackers.",
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top"
+  },
+  "legal": {
+    "eyebrow": "Information",
+    "title": "Legal notice",
+    "editorTitle": "Website publisher",
+    "name": "Name or business name",
+    "form": "Legal form",
+    "enterprise": "Company number (BCE/KBO)",
+    "vat": "VAT",
+    "address": "Address",
+    "contact": "Contact",
+    "hostingTitle": "Hosting",
+    "hosting": "The website is hosted by Vercel Inc. (vercel.com). The database is provided by Neon (neon.tech).",
+    "ipTitle": "Intellectual property",
+    "ip": "The photographs, videos, designs and tattoos shown on this website belong to their author. Any reproduction or reuse without prior written permission is prohibited.",
+    "liabilityTitle": "Liability",
+    "liability": "The information on this website is provided for guidance only. An appointment request sent through the website is not a commitment until it has been confirmed by email.",
+    "updated": "Last updated: {date}"
+  },
+  "privacy": {
+    "eyebrow": "Your data",
+    "title": "Privacy policy",
+    "intro": "This page explains what data this website collects, why, how long it is kept and how to exercise your rights (GDPR).",
+    "controllerTitle": "Data controller",
+    "controller": "The data controller is {name}. For any question about your data: {email}.",
+    "dataTitle": "Data collected",
+    "data": [
+      "Appointment request: first name, last name, email address, language, requested date and time, estimated length, project description and, if you provide them, placement, size, style, comment and reference images.",
+      "Contact form: first name, last name, email address, subject and message.",
+      "Security: a non-reversible fingerprint of your IP address is used for a few minutes to limit abuse (repeated submissions)."
+    ],
+    "purposesTitle": "Purposes and legal bases",
+    "purposes": [
+      "Handling your appointment request and replying to you (pre-contractual measures, Art. 6(1)(b) GDPR).",
+      "Replying to your messages (legitimate interest and pre-contractual measures).",
+      "Protecting the website against abuse and spam (legitimate interest, Art. 6(1)(f) GDPR)."
+    ],
+    "recipientsTitle": "Recipients and processors",
+    "recipients": "Your data is only accessible to the artist. It is hosted and processed by technical providers: Vercel (website hosting), Neon (database), Google (sending emails via Gmail, private Google Calendar and private Google Sheets tracking). These providers may process data outside the European Union under appropriate safeguards (EU-US Data Privacy Framework or standard contractual clauses). Your data is never sold or used for advertising.",
+    "retentionTitle": "Retention periods",
+    "retention": [
+      "Reference images: automatically deleted {attachmentDays} days after the appointment or the closing of the request.",
+      "Appointment requests and messages: anonymised {months} months after the appointment or receipt.",
+      "Anti-abuse data: a few minutes, 24 hours at most."
+    ],
+    "rightsTitle": "Your rights",
+    "rights": "You may request access to, rectification, erasure or portability of your data, or object to its processing, by writing to {email}. You also have the right to lodge a complaint with the Belgian Data Protection Authority (dataprotectionauthority.be).",
+    "cookiesTitle": "Cookies",
+    "cookies": "This website uses no analytics, advertising or social media cookies. Only strictly necessary cookies may be set: remembering your chosen language (NEXT_LOCALE) and, for the administrator only, the private area session cookie. No consent banner is therefore required.",
+    "securityTitle": "Security",
+    "security": "All exchanges are encrypted (HTTPS). Reference images are stored privately and can only be accessed after the artist has signed in.",
+    "updated": "Last updated: {date}"
+  },
+  "notFound": {
+    "title": "This page has faded away",
+    "text": "The page you are looking for does not exist or has been moved.",
+    "home": "Back to home"
+  },
+  "common": {
+    "required": "required",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "close": "Close",
+    "error": "Something went wrong."
+  }
+}

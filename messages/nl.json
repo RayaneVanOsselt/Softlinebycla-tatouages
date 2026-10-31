@@ -1,0 +1,392 @@
+{
+  "meta": {
+    "siteDescription": "SOFTLINEBY.CLA — fijne, op maat gemaakte fine line-tatoeages: bloemen, lettering, symbolen. Bekijk het werk en vraag online je afspraak aan.",
+    "home": {
+      "title": "Fine line-tatoeages op maat",
+      "description": "Fijne, verfijnde tatoeages, speciaal voor jou getekend. Ontdek de wereld van SOFTLINEBY.CLA en vraag online je afspraak aan."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Alle realisaties van SOFTLINEBY.CLA: fine line met bloemen, lettering, minimalistisch werk, illustraties en studies."
+    },
+    "about": {
+      "title": "Over mij",
+      "description": "De stijl, aanpak en werkwijze van SOFTLINEBY.CLA, fine line-tattooartiest."
+    },
+    "booking": {
+      "title": "Afspraak",
+      "description": "Kies een moment uit de beschikbaarheden en verstuur je afspraakaanvraag. Persoonlijke bevestiging door de artiest."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Een vraag of een idee voor een project? Schrijf rechtstreeks naar SOFTLINEBY.CLA."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "Hoe SOFTLINEBY.CLA met je persoonsgegevens omgaat."
+    },
+    "legal": {
+      "title": "Juridische informatie",
+      "description": "Juridische informatie over de website van SOFTLINEBY.CLA."
+    },
+    "response": {
+      "title": "Jouw antwoord"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "about": "Over mij",
+    "booking": "Afspraak",
+    "contact": "Contact",
+    "bookCta": "Afspraak maken",
+    "menu": "Menu",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "skip": "Naar de inhoud",
+    "language": "Taal",
+    "mainNav": "Hoofdnavigatie"
+  },
+  "intro": {
+    "skip": "Intro overslaan"
+  },
+  "home": {
+    "eyebrow": "Fine line-tatoeages · op afspraak",
+    "heroTitle": "De kunst van de lijn",
+    "heroTitleAccent": "zacht en precies",
+    "heroText": "Fijne, verfijnde tatoeages, voor jou ontworpen en met precisie gezet. Elk stuk ontstaat uit een gesprek, een idee — en de juiste lijn.",
+    "ctaBook": "Afspraak maken",
+    "ctaWork": "Ontdek mijn werk",
+    "scroll": "Scrollen",
+    "heroMediaLabel": "Videofragment van een realisatie",
+    "pauseVideo": "Video pauzeren",
+    "playVideo": "Video afspelen",
+    "manifestoLabel": "Manifest",
+    "manifesto": "Een fijne lijn vergeeft niets. Ze vraagt tijd, aandacht en een vaste hand. Hier wordt elk project getekend voor één huid: de jouwe.",
+    "aboutLabel": "De artiest",
+    "aboutTitle": "Achter de lijn",
+    "aboutText": "SOFTLINEBY.CLA staat voor fijne, elegante tatoeages: bloemen, lettering, symbolen en composities op maat. Een zachte, aandachtige aanpak waarbij we de tijd nemen om jouw verhaal te begrijpen vóór de eerste lijn wordt gezet.",
+    "aboutLink": "Ontdek mijn aanpak",
+    "pillars": [
+      {
+        "title": "Precisie",
+        "text": "Strakke lijnen en details die mooi ouder worden."
+      },
+      {
+        "title": "Op maat",
+        "text": "Elk ontwerp wordt afgestemd op je huid, de plaats en jouw verhaal."
+      },
+      {
+        "title": "Aandacht",
+        "text": "Een rustig moment, heldere uitleg, geen enkele vraag te veel."
+      }
+    ],
+    "featuredLabel": "Realisaties",
+    "featuredTitle": "Een selectie",
+    "featuredText": "Een greep uit het werk, van bloemen tot lettering. Elke tatoeage wordt getoond zoals ze gezet werd.",
+    "featuredAll": "Bekijk het volledige portfolio",
+    "processLabel": "Afspraak",
+    "processTitle": "Hoe het werkt",
+    "steps": [
+      {
+        "title": "Ontdekken",
+        "text": "Blader door het werk en ontdek welke stijl jou aanspreekt."
+      },
+      {
+        "title": "Een moment kiezen",
+        "text": "Kies een dag en een uur uit de beschikbaarheden die de artiest heeft opengezet."
+      },
+      {
+        "title": "Je project beschrijven",
+        "text": "Grootte, plaats, ideeën, referentiebeelden: hoe preciezer, hoe beter."
+      },
+      {
+        "title": "De aanvraag versturen",
+        "text": "Het tijdslot wordt voor je vastgehouden terwijl je project bekeken wordt."
+      },
+      {
+        "title": "Persoonlijke bevestiging",
+        "text": "Je krijgt het antwoord per e-mail: een bevestiging, of een voorstel voor een ander moment."
+      }
+    ],
+    "processNote": "Een aanvraag is nog geen afspraak: ze wordt pas bevestigd na persoonlijke goedkeuring door de artiest.",
+    "ctaLabel": "Jouw project",
+    "ctaTitle": "Jouw idee verdient de juiste lijn.",
+    "ctaText": "Kies een moment dat je past en vertel over je project: je krijgt een persoonlijk antwoord.",
+    "ctaContact": "Een vraag stellen"
+  },
+  "portfolio": {
+    "eyebrow": "Portfolio",
+    "title": "Realisaties",
+    "intro": "Fine line, bloemen, lettering en composities op maat. Klik op een afbeelding om ze te vergroten.",
+    "all": "Alles",
+    "filterLabel": "Filteren op stijl",
+    "empty": "Nog geen realisaties in deze categorie.",
+    "open": "Vergroten: {title}",
+    "details": "Project bekijken",
+    "close": "Sluiten",
+    "prev": "Vorige afbeelding",
+    "next": "Volgende afbeelding",
+    "counter": "{current} / {total}",
+    "video": "Video",
+    "back": "Terug naar het portfolio",
+    "similar": "In dezelfde stijl",
+    "style": "Stijl",
+    "year": "Jaar",
+    "media": "{count, plural, one {# medium} other {# media}}",
+    "bookSimilar": "Een project in deze stijl?",
+    "bookSimilarCta": "Afspraak aanvragen",
+    "lightboxLabel": "Afbeeldingsviewer"
+  },
+  "about": {
+    "eyebrow": "Over mij",
+    "title": "Eén lijn, één verhaal",
+    "intro": "SOFTLINEBY.CLA is een tattoowereld waarin de fijnheid van de lijn elke creatie leidt: verfijnde, leesbare stukken die bij jou passen.",
+    "approachTitle": "Mijn aanpak",
+    "approach": "Fine line draait om precisie: dunne lijnen, lichte schaduwen en details die na jaren nog leesbaar zijn. Elk project wordt afgestemd op de plaats op het lichaam, de grootte en je huid, zodat de tatoeage elegant ouder wordt.",
+    "processTitle": "Het creatieve proces",
+    "process": "Alles begint bij jouw idee. Samen verfijnen we het — stijl, plaats, verhoudingen — waarna het ontwerp voor jou wordt voorbereid en nog kan worden bijgestuurd voor de naald erin gaat.",
+    "experienceTitle": "De ervaring",
+    "experience": "Een rustig en aandachtig moment: we nemen de tijd om uitleg te geven, je vragen te beantwoorden en je te begeleiden tot en met de nazorg.",
+    "universeTitle": "De stijl",
+    "universe": "Bloemen en botanische motieven, handgeschreven lettering, minimalistische symbolen en kleine illustraties: een zachte beeldtaal, vrouwelijk of neutraal, altijd met zorg getekend.",
+    "cta": "Bekijk de realisaties"
+  },
+  "booking": {
+    "eyebrow": "Agenda",
+    "title": "Kies",
+    "titleAccent": "een moment",
+    "intro": "Geef de geschatte duur van je project op en kies daarna een dag en een uur uit de beschikbaarheden.",
+    "notice": "Je aanvraag wordt persoonlijk bekeken: ze wordt pas een afspraak na bevestiging per e-mail.",
+    "stepsLabel": "Stappen van de aanvraag",
+    "steps": {
+      "time": "Moment kiezen",
+      "details": "Project beschrijven",
+      "done": "Aanvraag verstuurd"
+    },
+    "duration": {
+      "label": "Geschatte duur",
+      "hint": "Niet zeker? Kies een schatting, de artiest stemt ze samen met jou af.",
+      "option": "{count} u"
+    },
+    "calendar": {
+      "label": "Kalender met beschikbaarheden",
+      "prev": "Vorige maand",
+      "next": "Volgende maand",
+      "loading": "Beschikbaarheden laden…",
+      "error": "De beschikbaarheden konden niet geladen worden.",
+      "retry": "Opnieuw proberen",
+      "empty": "Geen beschikbaarheden deze maand voor deze duur.",
+      "tryNext": "Volgende maand bekijken",
+      "tryShorter": "Probeer een kortere duur of een andere maand.",
+      "legend": {
+        "available": "Beschikbaar",
+        "held": "In afwachting",
+        "full": "Volzet",
+        "closed": "Gesloten"
+      },
+      "dayLabel": "{date} — {state}",
+      "selected": "geselecteerd"
+    },
+    "slots": {
+      "label": "Beschikbare uren",
+      "chooseDay": "Kies een dag in de kalender om de uren te zien.",
+      "available": "Beschikbaar",
+      "held": "In afwachting",
+      "heldHint": "Voor dit tijdslot loopt al een aanvraag; het kan nog vrijkomen.",
+      "unavailable": "Niet beschikbaar",
+      "none": "Geen vrije uren meer op deze dag."
+    },
+    "summary": {
+      "title": "Jouw aanvraag",
+      "empty": "Kies een duur, een dag en een uur.",
+      "date": "Datum",
+      "time": "Tijdstip",
+      "duration": "Geschatte duur",
+      "status": "Status",
+      "statusValue": "Te bevestigen door de artiest",
+      "continue": "Verder",
+      "back": "Tijdslot wijzigen",
+      "change": "Wijzigen"
+    },
+    "form": {
+      "title": "Jouw project",
+      "intro": "Met deze informatie kan de artiest je aanvraag bekijken. Velden met een * zijn verplicht.",
+      "identity": "Je gegevens",
+      "project": "Het project",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mailadres",
+      "description": "Beschrijving van het project",
+      "descriptionHint": "Motief, stijl, idee, betekenis… (minstens 20 tekens)",
+      "placement": "Plaats op het lichaam",
+      "placementHint": "Bv. binnenkant onderarm, enkel, nek",
+      "size": "Geschatte grootte (cm)",
+      "sizeHint": "Bv. 8 × 5",
+      "style": "Stijl of soort project",
+      "styleOptions": {
+        "": "— Kiezen —",
+        "fine-line": "Fine line",
+        "floral": "Bloemen & natuur",
+        "lettering": "Lettering",
+        "minimal": "Minimalistisch / symbool",
+        "illustration": "Illustratie",
+        "other": "Anders / ik weet het niet"
+      },
+      "comment": "Bijkomende opmerking",
+      "references": "Referentiebeelden",
+      "referencesHint": "Tot 3 afbeeldingen (JPG, PNG of WebP). Ze blijven privé en zijn enkel zichtbaar voor de artiest.",
+      "addImages": "Afbeeldingen toevoegen",
+      "removeImage": "{name} verwijderen",
+      "consent": "Ik ga ermee akkoord dat mijn gegevens gebruikt worden om mijn afspraakaanvraag te behandelen, volgens het",
+      "privacyLink": "privacybeleid",
+      "optional": "optioneel",
+      "submit": "Aanvraag versturen",
+      "submitting": "Bezig met versturen…",
+      "back": "Terug naar de kalender",
+      "honeypot": "Dit veld niet invullen"
+    },
+    "errors": {
+      "required": "Dit veld is verplicht.",
+      "invalid_email": "Ongeldig e-mailadres.",
+      "too_short": "Graag wat meer details.",
+      "too_long": "Deze tekst is te lang.",
+      "consent_required": "Je akkoord is nodig om de aanvraag te versturen.",
+      "invalid": "Ongeldige waarde.",
+      "SLOT_UNAVAILABLE": "Dit tijdslot is net ingenomen of niet meer beschikbaar. Kies een ander.",
+      "SLOT_HELD": "Voor dit tijdslot loopt al een andere aanvraag. Kies een ander.",
+      "TOO_SOON": "Dit tijdslot ligt te dichtbij. Kies een later moment.",
+      "OUTSIDE_RANGE": "Dit tijdslot kan niet geboekt worden.",
+      "RATE_LIMITED": "Te veel pogingen. Wacht enkele minuten en probeer opnieuw.",
+      "SPAM": "Je inzending kon niet gevalideerd worden. Probeer het over enkele seconden opnieuw.",
+      "generic": "Er ging iets mis. Je aanvraag werd niet verstuurd; probeer opnieuw.",
+      "network": "Geen verbinding. Controleer je netwerk en probeer opnieuw.",
+      "file_type": "Niet-ondersteund formaat (enkel JPG, PNG of WebP).",
+      "file_count": "Maximaal 3 afbeeldingen.",
+      "file_size": "Afbeelding te zwaar, zelfs na compressie."
+    },
+    "success": {
+      "title": "Aanvraag verstuurd",
+      "text": "Bedankt {name}! Je aanvraag is goed geregistreerd. Het tijdslot wordt voor je vastgehouden in afwachting van de bevestiging door de artiest.",
+      "pending": "Dit is nog geen bevestigde afspraak: je krijgt een e-mail zodra je aanvraag bekeken is.",
+      "reference": "Referentie",
+      "emailSent": "Je ontvangt een overzicht van je aanvraag per e-mail.",
+      "home": "Terug naar home",
+      "portfolio": "Bekijk het portfolio"
+    },
+    "respond": {
+      "eyebrow": "Nieuw tijdslot voorgesteld",
+      "title": "Past dit moment je?",
+      "intro": "Hallo {name}, de artiest stelt je het volgende tijdslot voor. Het wordt pas bevestigd na jouw akkoord.",
+      "message": "Bericht van de artiest",
+      "accept": "Dit tijdslot aanvaarden",
+      "decline": "Het voorstel weigeren",
+      "confirmDecline": "Als je weigert, wordt je aanvraag afgesloten. Doorgaan?",
+      "acceptedTitle": "Het is bevestigd!",
+      "accepted": "Je afspraak is bevestigd. Je ontving een overzicht per e-mail.",
+      "declinedTitle": "Voorstel geweigerd",
+      "declined": "Genoteerd: je aanvraag is afgesloten. Je kunt altijd een nieuwe aanvraag doen.",
+      "expiredTitle": "Voorstel verlopen",
+      "expired": "Deze link is niet meer geldig: het voorstel is verlopen of werd al beantwoord.",
+      "newRequest": "Nieuwe aanvraag doen",
+      "expiresAt": "Antwoord verwacht vóór {date}"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Schrijf de artiest",
+    "intro": "Een vraag, een idee voor een project, een bijzondere vraag? Je bericht komt rechtstreeks bij SOFTLINEBY.CLA terecht.",
+    "bookingHint": "Voor een afspraak gebruik je het eenvoudigst de agenda.",
+    "bookingLink": "Agenda openen",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mailadres",
+    "subject": "Onderwerp",
+    "message": "Bericht",
+    "consent": "Ik ga ermee akkoord dat mijn gegevens gebruikt worden om op mijn bericht te antwoorden, volgens het",
+    "submit": "Bericht versturen",
+    "submitting": "Bezig met versturen…",
+    "successTitle": "Bericht verstuurd",
+    "success": "Bedankt {name}! Je bericht is goed geregistreerd en doorgestuurd. Je krijgt een antwoord per e-mail.",
+    "another": "Nog een bericht schrijven",
+    "social": "Volg het werk",
+    "emailDirect": "Of per e-mail"
+  },
+  "footer": {
+    "tagline": "Fine line-tatoeages, op afspraak.",
+    "navTitle": "Ontdekken",
+    "bookingTitle": "Afspraak",
+    "bookingText": "Aanvragen worden persoonlijk bevestigd door de artiest.",
+    "followTitle": "Volgen",
+    "legalTitle": "Informatie",
+    "privacy": "Privacy",
+    "legal": "Juridische informatie",
+    "cookies": "Geen advertentiecookies of trackers.",
+    "rights": "Alle rechten voorbehouden.",
+    "backToTop": "Naar boven"
+  },
+  "legal": {
+    "eyebrow": "Informatie",
+    "title": "Juridische informatie",
+    "editorTitle": "Uitgever van de website",
+    "name": "Naam of benaming",
+    "form": "Rechtsvorm",
+    "enterprise": "Ondernemingsnummer (KBO)",
+    "vat": "Btw",
+    "address": "Adres",
+    "contact": "Contact",
+    "hostingTitle": "Hosting",
+    "hosting": "De website wordt gehost door Vercel Inc. (vercel.com). De databank wordt geleverd door Neon (neon.tech).",
+    "ipTitle": "Intellectuele eigendom",
+    "ip": "De foto’s, video’s, ontwerpen en tatoeages op deze website zijn eigendom van hun maakster. Elke reproductie of hergebruik zonder voorafgaande schriftelijke toestemming is verboden.",
+    "liabilityTitle": "Aansprakelijkheid",
+    "liability": "De informatie op deze website wordt ter informatie verstrekt. Een afspraakaanvraag via de website is pas een verbintenis na bevestiging per e-mail.",
+    "updated": "Laatst bijgewerkt: {date}"
+  },
+  "privacy": {
+    "eyebrow": "Jouw gegevens",
+    "title": "Privacybeleid",
+    "intro": "Op deze pagina lees je welke gegevens deze website verzamelt, waarom, hoe lang ze bewaard worden en hoe je je rechten uitoefent (AVG).",
+    "controllerTitle": "Verwerkingsverantwoordelijke",
+    "controller": "De verwerkingsverantwoordelijke is {name}. Voor elke vraag over je gegevens: {email}.",
+    "dataTitle": "Verzamelde gegevens",
+    "data": [
+      "Afspraakaanvraag: voornaam, achternaam, e-mailadres, taal, gewenste datum en uur, geschatte duur, projectbeschrijving en, als je die meegeeft, plaats op het lichaam, grootte, stijl, opmerking en referentiebeelden.",
+      "Contactformulier: voornaam, achternaam, e-mailadres, onderwerp en bericht.",
+      "Beveiliging: een niet-omkeerbare afdruk van je IP-adres wordt enkele minuten gebruikt om misbruik (herhaalde inzendingen) te beperken."
+    ],
+    "purposesTitle": "Doeleinden en rechtsgronden",
+    "purposes": [
+      "Je afspraakaanvraag behandelen en je antwoorden (precontractuele maatregelen, art. 6.1.b AVG).",
+      "Op je berichten antwoorden (gerechtvaardigd belang en precontractuele maatregelen).",
+      "De website beschermen tegen misbruik en spam (gerechtvaardigd belang, art. 6.1.f AVG)."
+    ],
+    "recipientsTitle": "Ontvangers en verwerkers",
+    "recipients": "Je gegevens zijn enkel toegankelijk voor de artiest. Ze worden gehost en verwerkt door technische dienstverleners: Vercel (hosting van de website), Neon (databank), Google (verzending van e-mails via Gmail, privé-agenda in Google Agenda en privé-overzicht in Google Sheets). Deze dienstverleners kunnen gegevens buiten de Europese Unie verwerken met passende waarborgen (EU-US Data Privacy Framework of modelcontractbepalingen). Je gegevens worden nooit verkocht of voor reclame gebruikt.",
+    "retentionTitle": "Bewaartermijnen",
+    "retention": [
+      "Referentiebeelden: automatisch verwijderd {attachmentDays} dagen na de afspraak of de afsluiting van de aanvraag.",
+      "Afspraakaanvragen en berichten: geanonimiseerd {months} maanden na de afspraak of de ontvangst.",
+      "Gegevens tegen misbruik: enkele minuten tot maximaal 24 uur."
+    ],
+    "rightsTitle": "Jouw rechten",
+    "rights": "Je kunt inzage, verbetering, verwijdering of overdraagbaarheid van je gegevens vragen, of bezwaar maken tegen de verwerking, door te schrijven naar {email}. Je hebt ook het recht om klacht in te dienen bij de Gegevensbeschermingsautoriteit (gegevensbeschermingsautoriteit.be).",
+    "cookiesTitle": "Cookies",
+    "cookies": "Deze website gebruikt geen analytische, advertentie- of socialemediacookies. Enkel strikt noodzakelijke cookies kunnen geplaatst worden: het onthouden van de gekozen taal (NEXT_LOCALE) en, enkel voor de beheerder, de sessiecookie van de privéruimte. Een toestemmingsbanner is dus niet nodig.",
+    "securityTitle": "Beveiliging",
+    "security": "Alle communicatie is versleuteld (HTTPS). Referentiebeelden worden privé bewaard en zijn enkel toegankelijk na aanmelding van de artiest.",
+    "updated": "Laatst bijgewerkt: {date}"
+  },
+  "notFound": {
+    "title": "Deze pagina is uitgewist",
+    "text": "De pagina die je zoekt bestaat niet of werd verplaatst.",
+    "home": "Terug naar home"
+  },
+  "common": {
+    "required": "verplicht",
+    "loading": "Laden…",
+    "retry": "Opnieuw proberen",
+    "close": "Sluiten",
+    "error": "Er ging iets mis."
+  }
+}
