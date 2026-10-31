@@ -3,14 +3,14 @@ import { localizedPath, type InternalPath } from "@/i18n/paths";
 import { siteUrl } from "@/lib/config";
 import { getPublishedSlugs } from "@/lib/content/portfolio";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const LOCALES = ["fr", "nl", "en"] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl();
   const entry = (path: InternalPath, params: Record<string, string> = {}, lastModified?: Date, priority = 0.7): MetadataRoute.Sitemap[number] => {
-    const fill = (l: (typeof LOCALES)[number]) => `${base}${Object.entries(params).reduce((p, [k, v]) => p.replace(`[${k}]`, v), localizedPath(path, l))}`;
+    const fill = (l: (typeof LOCALES)[number]) => `${base}${localizedPath(path, l, params)}`;
     return {
       url: fill("fr"),
       lastModified: lastModified ?? new Date(),
@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: { languages: Object.fromEntries(LOCALES.map((l) => [l, fill(l)])) },
     };
   };
-  const slugs = await getPublishedSlugs().catch(() => []);
+  const slugs = getPublishedSlugs();
   return [
     entry("/", {}, undefined, 1),
     entry("/portfolio", {}, undefined, 0.9),
@@ -27,6 +27,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entry("/contact"),
     entry("/privacy", {}, undefined, 0.3),
     entry("/legal", {}, undefined, 0.3),
-    ...slugs.map((s) => entry("/portfolio/[slug]", { slug: s.slug }, s.updatedAt, 0.6)),
+    ...slugs.map((slug) => entry("/portfolio/[slug]", { slug }, undefined, 0.6)),
   ];
 }

@@ -5,10 +5,8 @@ import { PageHeading } from "@/components/site/PageHeading";
 import { ArrowRight, Mail, socialIcon } from "@/components/ui/icons";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { getSiteChrome } from "@/lib/content/site";
+import { activeSocials, siteConfig } from "@/lib/config";
 import { pageMetadata } from "@/lib/seo/metadata";
-
-export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -20,7 +18,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
-  const { socials, contactEmail } = await getSiteChrome();
+  const socials = activeSocials();
+  const contactEmail = siteConfig.emailContact || null;
   return (
     <>
       <PageHeading eyebrow={t("eyebrow")} title={t("title")}>

@@ -6,8 +6,6 @@ import type { Locale } from "@/i18n/routing";
 import { getPublishedProjects } from "@/lib/content/portfolio";
 import { pageMetadata } from "@/lib/seo/metadata";
 
-export const revalidate = 300;
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta.portfolio" });

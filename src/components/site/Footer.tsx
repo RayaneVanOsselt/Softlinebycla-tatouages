@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getSiteChrome } from "@/lib/content/site";
+import { activeSocials, siteConfig } from "@/lib/config";
 import { ArrowUpRight, Mail, socialIcon } from "../ui/icons";
 import { FullLogo } from "./Brand";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -8,7 +8,8 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export async function Footer() {
   const t = await getTranslations("footer");
   const nav = await getTranslations("nav");
-  const { socials, contactEmail } = await getSiteChrome();
+  const socials = activeSocials();
+  const contactEmail = siteConfig.emailContact || null;
   const year = new Date().getFullYear();
 
   return (

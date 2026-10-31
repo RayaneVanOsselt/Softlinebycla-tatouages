@@ -8,6 +8,6 @@ export default defineConfig({
     include: ["tests/**/*.test.ts"],
     testTimeout: 30_000,
     hookTimeout: 60_000,
-    env: { TZ: "UTC" },
+    env: { TZ: "UTC" }, // le moteur gère lui-même Europe/Brussels
   },
 });

@@ -6,16 +6,15 @@ import { Reveal } from "@/components/site/Reveal";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
-import { siteUrl } from "@/lib/config";
+import { asset, siteUrl } from "@/lib/config";
 import { getProjectBySlug, getPublishedSlugs } from "@/lib/content/portfolio";
 import { pageMetadata } from "@/lib/seo/metadata";
 
-export const revalidate = 300;
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = await getPublishedSlugs().catch(() => []);
-  return routing.locales.flatMap((locale) => slugs.map((s) => ({ locale, slug: s.slug })));
+  const slugs = getPublishedSlugs();
+  return routing.locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; slug: string }> }): Promise<Metadata> {
@@ -56,7 +55,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
           {cover && (
             <div className="hero-in relative overflow-hidden rounded-[var(--radius-card)] bg-surface-strong" style={{ aspectRatio: `${cover.width} / ${cover.height}` }}>
               {cover.kind === "video" ? (
-                <video src={cover.url} poster={cover.posterUrl ?? undefined} controls playsInline muted loop preload="metadata" aria-label={cover.alt} className="absolute inset-0 h-full w-full object-cover" />
+                <video src={asset(cover.url)} poster={cover.posterUrl ? asset(cover.posterUrl) : undefined} controls playsInline muted loop preload="metadata" aria-label={cover.alt} className="absolute inset-0 h-full w-full object-cover" />
               ) : (
                 <MediaImage media={cover} sizes="(max-width: 1024px) 100vw, 58vw" priority quality={85} />
               )}
@@ -67,7 +66,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
               {more.map((m) => (
                 <Reveal key={m.id} className="relative overflow-hidden rounded-[var(--radius-card)] bg-surface-strong" style={{ aspectRatio: `${m.width} / ${m.height}` }}>
                   {m.kind === "video" ? (
-                    <video src={m.url} poster={m.posterUrl ?? undefined} controls playsInline muted preload="metadata" aria-label={m.alt} className="absolute inset-0 h-full w-full object-cover" />
+                    <video src={asset(m.url)} poster={m.posterUrl ? asset(m.posterUrl) : undefined} controls playsInline muted preload="metadata" aria-label={m.alt} className="absolute inset-0 h-full w-full object-cover" />
                   ) : (
                     <MediaImage media={m} sizes="(max-width: 1024px) 50vw, 29vw" />
                   )}
@@ -120,14 +119,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
             </div>
             <nav className="mt-10 flex justify-between gap-4 text-sm" aria-label="Projets">
               {prev ? (
-                <Link href={{ pathname: "/portfolio/[slug]", params: { slug: prev.slug } }} className="link-reveal inline-flex items-center gap-2">
+                <Link href={`/portfolio/${prev.slug}`} className="link-reveal inline-flex items-center gap-2">
                   <ArrowLeft size={16} /> {prev.title}
                 </Link>
               ) : (
                 <span />
               )}
               {next && (
-                <Link href={{ pathname: "/portfolio/[slug]", params: { slug: next.slug } }} className="link-reveal inline-flex items-center gap-2 text-right">
+                <Link href={`/portfolio/${next.slug}`} className="link-reveal inline-flex items-center gap-2 text-right">
                   {next.title} <ArrowRight size={16} />
                 </Link>
               )}
@@ -145,7 +144,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
             <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {similar.map((p, i) => (
                 <Reveal as="li" key={p.id} delay={i * 100}>
-                  <Link href={{ pathname: "/portfolio/[slug]", params: { slug: p.slug } }} className="group block">
+                  <Link href={`/portfolio/${p.slug}`} className="group block">
                     <span className="relative block aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-surface-strong">
                       <span className="absolute inset-0 block transition-transform duration-[1.2s] ease-[var(--ease-soft)] group-hover:scale-[1.04]">
                         <MediaImage media={p.media[0]!} sizes="(max-width: 640px) 100vw, 33vw" />

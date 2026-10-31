@@ -14,8 +14,7 @@ export function pageMetadata(opts: {
   image?: { url: string; width: number; height: number; alt: string };
   noindex?: boolean;
 }): Metadata {
-  const fill = (p: string) => Object.entries(opts.params ?? {}).reduce((acc, [k, v]) => acc.replace(`[${k}]`, v), p);
-  const url = (l: "fr" | "nl" | "en") => `${siteUrl()}${fill(localizedPath(opts.path, l))}`;
+  const url = (l: "fr" | "nl" | "en") => `${siteUrl()}${localizedPath(opts.path, l, opts.params)}`;
   const image = opts.image ?? { url: `${siteUrl()}/brand/og-default.jpg`, width: 1200, height: 630, alt: "SOFTLINEBY.CLA" };
   return {
     title: opts.title,

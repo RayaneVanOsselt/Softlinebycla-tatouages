@@ -2,14 +2,17 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
+import { asset, basePath } from "@/lib/config";
 
 const KEY = "slc-intro-seen";
+/** Accueil = /fr/, /nl/ ou /en/ (précédé du chemin GitHub Pages éventuel). */
+const HOME_PATTERN = `^${basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/(fr|nl|en)/?$`;
 
 /**
  * Script exécuté avant l'affichage : décide si l'introduction joue (première visite de la session,
  * mouvement non réduit, page d'accueil). Sinon elle n'est jamais affichée — aucun flash.
  */
-export const introBootScript = `(function(){try{var d=document.documentElement;d.classList.remove('no-js');var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=sessionStorage.getItem('${KEY}');var home=/^\\/(fr|nl|en)\\/?$/.test(location.pathname);d.dataset.intro=(!r&&!s&&home)?'play':'skip';if(!r&&!s&&home)sessionStorage.setItem('${KEY}','1');}catch(e){document.documentElement.dataset.intro='skip';}})();`;
+export const introBootScript = `(function(){try{var d=document.documentElement;d.classList.remove('no-js');var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=sessionStorage.getItem('${KEY}');var home=new RegExp(${JSON.stringify(HOME_PATTERN)}).test(location.pathname);d.dataset.intro=(!r&&!s&&home)?'play':'skip';if(!r&&!s&&home)sessionStorage.setItem('${KEY}','1');}catch(e){document.documentElement.dataset.intro='skip';}})();`;
 
 /** Introduction : le trait d'aiguille se dessine, le monogramme officiel apparaît, puis le rideau se lève. */
 export function Intro() {
@@ -42,9 +45,9 @@ export function Intro() {
       <span className="intro-needle" />
       <div className="flex flex-col items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/monogram-ink.png" alt="" className="intro-mark" width={277} height={364} />
+        <img src={asset("/brand/monogram-ink.png")} alt="" className="intro-mark" width={277} height={364} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/wordmark-ink.png" alt="" className="intro-word" width={431} height={51} />
+        <img src={asset("/brand/wordmark-ink.png")} alt="" className="intro-word" width={431} height={51} />
       </div>
       <button
         type="button"

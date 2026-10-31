@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/config";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/admin", "/api", "/fr/reservation/reponse", "/nl/afspraak/antwoord", "/en/booking/response"] }],
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/fr/booking/response/", "/nl/booking/response/", "/en/booking/response/"] }],
     sitemap: `${siteUrl()}/sitemap.xml`,
   };
 }

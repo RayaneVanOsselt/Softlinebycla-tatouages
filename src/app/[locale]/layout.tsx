@@ -8,9 +8,26 @@ import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { Intro, introBootScript } from "@/components/site/Intro";
 import { routing } from "@/i18n/routing";
-import { siteUrl } from "@/lib/config";
+import { asset, siteUrl } from "@/lib/config";
 import { cormorant, nunito } from "@/lib/fonts";
 import "../globals.css";
+
+/**
+ * Politique de sécurité (GitHub Pages ne permet pas d'en-têtes HTTP : balise meta).
+ * Seul le moteur de réservation Google Apps Script est autorisé en plus du site lui-même.
+ */
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "media-src 'self'",
+  "font-src 'self'",
+  "connect-src 'self' https://script.google.com https://script.googleusercontent.com",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join("; ");
 
 export const viewport: Viewport = {
   themeColor: "#FBF8F3",
@@ -30,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: "SOFTLINEBY.CLA", template: "%s · SOFTLINEBY.CLA" },
     description: t("siteDescription"),
     applicationName: "SOFTLINEBY.CLA",
-    manifest: "/manifest.webmanifest",
+    manifest: asset("/manifest.webmanifest"),
     formatDetection: { telephone: false, address: false, email: false },
   };
 }
@@ -43,6 +60,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
 
   return (
     <html lang={locale} className={`no-js ${cormorant.variable} ${nunito.variable}`} suppressHydrationWarning>
+      <head>
+        {process.env.NODE_ENV === "production" && <meta httpEquiv="Content-Security-Policy" content={CSP} />}
+      </head>
       <body>
         <Script id="intro-boot" strategy="beforeInteractive">
           {introBootScript}

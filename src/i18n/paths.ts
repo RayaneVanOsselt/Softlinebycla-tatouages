@@ -1,20 +1,7 @@
-/** Chemins localisés (SEO) — partagés entre le routage next-intl, le sitemap et les e-mails. */
-export const localizedPathnames = {
-  "/": "/",
-  "/portfolio": "/portfolio",
-  "/portfolio/[slug]": "/portfolio/[slug]",
-  "/about": { fr: "/a-propos", nl: "/over-mij", en: "/about" },
-  "/booking": { fr: "/reservation", nl: "/afspraak", en: "/booking" },
-  "/booking/response": { fr: "/reservation/reponse", nl: "/afspraak/antwoord", en: "/booking/response" },
-  "/contact": "/contact",
-  "/privacy": { fr: "/confidentialite", nl: "/privacybeleid", en: "/privacy" },
-  "/legal": { fr: "/mentions-legales", nl: "/juridische-informatie", en: "/legal-notice" },
-} as const;
+/** Chemins des pages (identiques dans les 3 langues : l'hébergement statique ne permet pas de les traduire). */
+export type InternalPath = "/" | "/portfolio" | "/portfolio/[slug]" | "/about" | "/booking" | "/booking/response" | "/contact" | "/privacy" | "/legal";
 
-export type InternalPath = keyof typeof localizedPathnames;
-
-export function localizedPath(path: InternalPath, locale: "fr" | "nl" | "en"): string {
-  const entry = localizedPathnames[path];
-  const p = typeof entry === "string" ? entry : entry[locale];
-  return `/${locale}${p === "/" ? "" : p}`;
+export function localizedPath(path: InternalPath, locale: "fr" | "nl" | "en", params: Record<string, string> = {}): string {
+  const p = Object.entries(params).reduce<string>((acc, [k, v]) => acc.replace(`[${k}]`, v), path);
+  return `/${locale}${p === "/" ? "" : p}/`;
 }

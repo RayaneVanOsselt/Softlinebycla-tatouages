@@ -9,10 +9,7 @@ import { CtaBand } from "@/components/home/CtaBand";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getFeaturedProjects } from "@/lib/content/portfolio";
-import { getSetting, pickLocalized } from "@/lib/settings";
 import { pageMetadata } from "@/lib/seo/metadata";
-
-export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -24,19 +21,19 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
-  const [content, featured] = await Promise.all([getSetting("content"), getFeaturedProjects(locale, 8)]);
+  const featured = await getFeaturedProjects(locale, 8);
   const images = featured.flatMap((p) => p.media).filter((m) => m.kind === "image").slice(0, 3);
   const sections = [
-    { title: t("approachTitle"), text: pickLocalized(content.aboutApproach, locale, t("approach")) },
+    { title: t("approachTitle"), text: t("approach") },
     { title: t("processTitle"), text: t("process") },
     { title: t("experienceTitle"), text: t("experience") },
-    { title: t("universeTitle"), text: pickLocalized(content.aboutBody, locale, t("universe")) },
+    { title: t("universeTitle"), text: t("universe") },
   ];
 
   return (
     <>
       <PageHeading eyebrow={t("eyebrow")} title={t("title")}>
-        <p>{pickLocalized(content.aboutIntro, locale, t("intro"))}</p>
+        <p>{t("intro")}</p>
       </PageHeading>
 
       <section className="container-site grid gap-5 pb-20 sm:grid-cols-3">

@@ -25,3 +25,7 @@ next-env.d.ts
 .DS_Store
 .vercel
 npm-debug.log*
+
+# médias optimisés automatiquement (générés par scripts/build-media.ts)
+/public/portfolio/
+/src/content/media.generated.json
