@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { asset } from "@/lib/config";
 import type { PublicMedia } from "@/lib/content/portfolio";
 import { ArrowRight } from "../ui/icons";
 import { HeroVideo } from "./HeroVideo";
@@ -57,7 +58,7 @@ export async function Hero({ media, title, text }: { media: PublicMedia | null; 
                   {media.posterUrl && (
                     <Image src={media.posterUrl} alt="" fill priority sizes="(max-width: 1024px) 90vw, 38vw" className="object-cover" />
                   )}
-                  <HeroVideo src={media.url} poster={media.posterUrl ?? ""} label={media.alt || t("heroMediaLabel")} />
+                  <HeroVideo src={asset(media.url)} poster={media.posterUrl ? asset(media.posterUrl) : ""} label={media.alt || t("heroMediaLabel")} />
                 </>
               ) : media ? (
                 <Image src={media.url} alt={media.alt} fill priority sizes="(max-width: 1024px) 90vw, 38vw" className="object-cover" style={{ objectPosition: `${media.focalX}% ${media.focalY}%` }} />

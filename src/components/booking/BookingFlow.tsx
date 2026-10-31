@@ -4,6 +4,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { Link } from "@/i18n/navigation";
+import { api } from "@/lib/api";
+import { todayKey } from "@/lib/time";
 import { SelectField, Spinner, TextArea, TextField } from "../ui/Field";
 import { ArrowLeft, ArrowRight, Check } from "../ui/icons";
 import { DurationPicker } from "./DurationPicker";
@@ -22,11 +24,22 @@ const addMonths = (m: string, d: number) => {
 
 type FieldErrors = Record<string, string>;
 
-export function BookingFlow({ today, maxMonth, maxDurationMinutes }: { today: string; maxMonth: string; maxDurationMinutes: number }) {
+const blobToBase64 = (b: Blob) =>
+  new Promise<string>((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).split(",")[1] ?? "");
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(b);
+  });
+
+export function BookingFlow() {
+  const [today, setToday] = useState(() => todayKey());
   const locale = useLocale();
   const t = useTranslations("booking");
   const reduce = useReducedMotion();
   const firstMonth = today.slice(0, 7);
+  const [maxMonth, setMaxMonth] = useState(() => addMonths(firstMonth, 4));
+  const maxDurationMinutes = 360;
 
   const [step, setStep] = useState<Step>("time");
   const [duration, setDuration] = useState(60);
@@ -53,13 +66,14 @@ export function BookingFlow({ today, maxMonth, maxDurationMinutes }: { today: st
     const ctrl = new AbortController();
     setLoading(true);
     setLoadError(false);
-    fetch(`/api/availability?month=${month}&duration=${duration}`, { signal: ctrl.signal, cache: "no-store" })
-      .then(async (r) => {
-        if (!r.ok) throw new Error(String(r.status));
-        return (await r.json()) as MonthData;
-      })
-      .then((d) => {
+    api
+      .availability(month, duration, ctrl.signal)
+      .then((r) => {
+        if (!r.ok) throw new Error(r.code);
+        const d: MonthData = r;
         setData(d);
+        setToday(d.today);
+        setMaxMonth(d.maxDate.slice(0, 7));
         setLoading(false);
         // Premier affichage : si le mois courant n'a plus rien, on passe au mois suivant ayant des disponibilités
         if (!autoAdvanced.current && month === firstMonth && !d.days.some((x) => x.state === "available") && month < maxMonth) {
@@ -125,20 +139,22 @@ export function BookingFlow({ today, maxMonth, maxDurationMinutes }: { today: st
       return;
     }
 
-    fd.set("consent", "true");
-    fd.set("locale", locale);
-    fd.set("date", selection.date);
-    fd.set("start", selection.slot.start);
-    fd.set("durationMinutes", String(duration));
-    fd.set("startedAt", String(startedAt.current));
-    files.forEach((f) => fd.append("references", f.blob, f.name));
-
     setSubmitting(true);
     setFormError(null);
     try {
-      const res = await fetch("/api/bookings", { method: "POST", body: fd });
-      const json = (await res.json().catch(() => ({}))) as { reference?: string; code?: string; fieldErrors?: FieldErrors };
-      if (res.ok && json.reference) {
+      const payload = {
+        ...Object.fromEntries([...fd.entries()].filter(([, v]) => typeof v === "string")),
+        consent: true,
+        locale,
+        date: selection.date,
+        start: selection.slot.start,
+        durationMinutes: duration,
+        startedAt: startedAt.current,
+        references: await Promise.all(files.map(async (f) => ({ name: f.name, type: f.blob.type || "image/jpeg", data: await blobToBase64(f.blob) }))),
+      };
+      const res = await api.book(payload);
+      const json = (res.ok ? { reference: res.reference } : { code: res.code, fieldErrors: res.fieldErrors }) as { reference?: string; code?: string; fieldErrors?: FieldErrors };
+      if (json.reference) {
         setResult({ reference: json.reference, firstName: String(fd.get("firstName")) });
         setStep("done");
         scrollTop();
@@ -156,6 +172,8 @@ export function BookingFlow({ today, maxMonth, maxDurationMinutes }: { today: st
         scrollTop();
       } else if (json.code === "RATE_LIMITED" || json.code === "SPAM") {
         setFormError(t(`errors.${json.code}`));
+      } else if (json.code === "NETWORK" || json.code === "NOT_CONFIGURED") {
+        setFormError(t("errors.network"));
       } else {
         setFormError(t("errors.generic"));
       }

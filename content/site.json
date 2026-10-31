@@ -1,0 +1,24 @@
+{
+  "_aide": "Réglages du site. Modifiable directement sur GitHub (icône crayon). Le site se met à jour tout seul en ~2 minutes. Voir docs/GUIDE-DEMARRAGE.md.",
+  "adresseApiReservation": "",
+  "emailContact": "",
+  "reseauxSociaux": {
+    "instagram": "",
+    "tiktok": "",
+    "pinterest": "",
+    "facebook": "",
+    "youtube": ""
+  },
+  "mentionsLegales": {
+    "nom": "",
+    "formeJuridique": "",
+    "numeroEntreprise": "",
+    "tva": "",
+    "emailDonneesPersonnelles": "",
+    "derniereMiseAJour": ""
+  },
+  "conservation": {
+    "imagesReferenceJours": 120,
+    "donneesClientsMois": 24
+  }
+}

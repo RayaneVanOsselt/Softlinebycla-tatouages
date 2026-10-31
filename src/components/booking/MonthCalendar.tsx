@@ -4,7 +4,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useRef, type KeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight } from "../ui/icons";
-import { dateFromKey, formatDay, intlLocale, type DayState, type DayView } from "./types";
+import { dateFromKey, formatDay, intlLocale, type DayView } from "./types";
+type DayState = DayView["state"];
 
 const STATE_STYLE: Record<DayState, string> = {
   available: "text-chocolate hover:bg-cream/70 font-semibold",

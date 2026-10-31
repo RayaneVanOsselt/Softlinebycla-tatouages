@@ -1,7 +1,6 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
@@ -11,10 +10,7 @@ const LABEL: Record<string, string> = { fr: "Français", nl: "Nederlands", en: "
 export function LanguageSwitcher({ className = "", tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
   const locale = useLocale();
   const pathname = usePathname();
-  const params = useParams();
   const t = useTranslations("nav");
-  const { locale: _ignored, ...rest } = params as Record<string, string>;
-  const href = { pathname, params: rest } as unknown as Parameters<typeof Link>[0]["href"];
 
   return (
     <nav aria-label={t("language")} className={className}>
@@ -27,8 +23,14 @@ export function LanguageSwitcher({ className = "", tone = "dark" }: { className?
               </span>
             )}
             <Link
-              href={href}
+              href={pathname}
               locale={l}
+              onClick={() => {
+                // Préférence mémorisée dans ce navigateur uniquement (aucun cookie)
+                try {
+                  localStorage.setItem("slc-locale", l);
+                } catch {}
+              }}
               lang={l}
               hrefLang={l}
               aria-current={l === locale ? "true" : undefined}

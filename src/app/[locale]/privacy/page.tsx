@@ -3,10 +3,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalSection } from "@/components/site/LegalSection";
 import { PageHeading } from "@/components/site/PageHeading";
 import type { Locale } from "@/i18n/routing";
-import { getSetting, pickLocalized } from "@/lib/settings";
+import { siteConfig } from "@/lib/config";
 import { pageMetadata } from "@/lib/seo/metadata";
-
-export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -18,12 +16,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("privacy");
-  const [legal, contact, booking] = await Promise.all([getSetting("legal"), getSetting("contact"), getSetting("booking")]);
-  const name = legal.businessName || "SOFTLINEBY.CLA";
-  const email = legal.privacyEmail || contact.contactEmail;
-  const extra = pickLocalized(legal.extraPrivacyText, locale, "");
+  const legal = siteConfig.mentionsLegales;
+  const name = legal.nom || "SOFTLINEBY.CLA";
+  const email = legal.emailDonneesPersonnelles || siteConfig.emailContact;
   const list = (key: "data" | "purposes" | "retention") =>
-    (t.raw(key) as string[]).map((s) => s.replace("{attachmentDays}", String(booking.attachmentRetentionDays)).replace("{months}", String(booking.dataRetentionMonths)));
+    (t.raw(key) as string[]).map((s) => s.replace("{attachmentDays}", String(siteConfig.conservation.imagesReferenceJours)).replace("{months}", String(siteConfig.conservation.donneesClientsMois)));
 
   return (
     <>
@@ -55,12 +52,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         <LegalSection title={t("securityTitle")}>
           <p>{t("security")}</p>
         </LegalSection>
-        {extra && (
-          <LegalSection title="—">
-            <p className="whitespace-pre-line">{extra}</p>
-          </LegalSection>
-        )}
-        {legal.reviewedAt && <p className="pt-6 text-sm text-fg-muted">{t("updated", { date: legal.reviewedAt })}</p>}
+        {legal.derniereMiseAJour && <p className="pt-6 text-sm text-fg-muted">{t("updated", { date: legal.derniereMiseAJour })}</p>}
       </div>
     </>
   );

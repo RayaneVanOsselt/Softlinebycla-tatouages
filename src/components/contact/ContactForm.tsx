@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useRef, useState, type FormEvent } from "react";
 import { Link } from "@/i18n/navigation";
+import { api } from "@/lib/api";
 import { Spinner, TextArea, TextField } from "../ui/Field";
 import { ArrowRight, Check } from "../ui/icons";
 
@@ -36,15 +37,12 @@ export function ContactForm() {
       form.querySelector<HTMLElement>(`[name="${Object.keys(local)[0]}"]`)?.focus();
       return;
     }
-    fd.set("consent", "true");
-    fd.set("locale", locale);
-    fd.set("startedAt", String(startedAt.current));
     setSubmitting(true);
     setFormError(null);
     try {
-      const res = await fetch("/api/contact", { method: "POST", body: fd });
-      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; code?: string; fieldErrors?: Errors };
-      if (res.ok && json.ok) {
+      const res = await api.contact({ ...Object.fromEntries([...fd.entries()].filter(([, v]) => typeof v === "string")), consent: true, locale, startedAt: startedAt.current });
+      const json = (res.ok ? { ok: true } : { ok: false, code: res.code, fieldErrors: res.fieldErrors }) as { ok?: boolean; code?: string; fieldErrors?: Errors };
+      if (json.ok) {
         setSentTo(String(fd.get("firstName")));
         form.reset();
         return;

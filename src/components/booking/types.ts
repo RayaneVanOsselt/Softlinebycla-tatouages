@@ -1,26 +1,5 @@
-export type SlotStatus = "available" | "held" | "unavailable";
-export type DayState = "available" | "held" | "full" | "closed";
-
-export interface SlotView {
-  startMinute: number;
-  start: string;
-  end: string;
-  status: SlotStatus;
-}
-
-export interface DayView {
-  date: string;
-  state: DayState;
-  slots: SlotView[];
-}
-
-export interface MonthData {
-  month: string;
-  durationMinutes: number;
-  maxDurationMinutes: number;
-  days: DayView[];
-  calendarChecked: boolean;
-}
+export type { DayView, MonthData, SlotView } from "@/lib/api";
+import type { SlotView } from "@/lib/api";
 
 export interface Selection {
   date: string;

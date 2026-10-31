@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "@/i18n/navigation";
+import { asset } from "@/lib/config";
 import type { PublicMedia } from "@/lib/content/portfolio";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Close } from "../ui/icons";
 
@@ -111,8 +112,8 @@ export function Lightbox({ items, index, onClose, onIndex }: { items: LightboxIt
                 {item.media.kind === "video" ? (
                   <video
                     key={item.media.url}
-                    src={item.media.url}
-                    poster={item.media.posterUrl ?? undefined}
+                    src={asset(item.media.url)}
+                    poster={item.media.posterUrl ? asset(item.media.posterUrl) : undefined}
                     controls
                     playsInline
                     autoPlay={!reduce}
@@ -154,7 +155,7 @@ export function Lightbox({ items, index, onClose, onIndex }: { items: LightboxIt
                   </button>
                 </div>
               )}
-              <Link href={{ pathname: "/portfolio/[slug]", params: { slug: item.slug } }} className="btn btn-ghost min-h-11 text-cream" onClick={onClose}>
+              <Link href={`/portfolio/${item.slug}`} className="btn btn-ghost min-h-11 text-cream" onClick={onClose}>
                 {t("details")} <ArrowUpRight size={14} />
               </Link>
             </div>

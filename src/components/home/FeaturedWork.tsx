@@ -97,7 +97,7 @@ export function FeaturedWork({
             return (
               <Link
                 key={p.id}
-                href={{ pathname: "/portfolio/[slug]", params: { slug: p.slug } }}
+                href={`/portfolio/${p.slug}`}
                 className={`group relative block shrink-0 snap-start ${
                   pinned ? `${LAYOUT[i % LAYOUT.length]} aspect-[3/4]` : "aspect-[3/4] w-[78vw] max-w-sm"
                 }`}

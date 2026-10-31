@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { BookingFlow } from "@/components/booking/BookingFlow";
 import type { Locale } from "@/i18n/routing";
-import { getSetting } from "@/lib/settings";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { addDays, todayKey } from "@/lib/time";
-
-export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -18,8 +14,6 @@ export default async function BookingPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("booking");
-  const cfg = await getSetting("booking");
-  const today = todayKey();
   const title = t("title");
 
   return (
@@ -46,7 +40,7 @@ export default async function BookingPage({ params }: { params: Promise<{ locale
           <p className="mt-6 rounded-xl bg-surface p-4">JavaScript est nécessaire pour afficher l’agenda. / JavaScript is required to display the calendar.</p>
         </noscript>
         <div className="mt-12">
-          <BookingFlow today={today} maxMonth={addDays(today, cfg.maxAdvanceDays).slice(0, 7)} maxDurationMinutes={cfg.maxDurationHours * 60} />
+          <BookingFlow />
         </div>
       </div>
     </section>
