@@ -22,6 +22,8 @@ var DAY_START = 11 * 60; // 11:00
 var DAY_END = 20 * 60; // 20:00
 var SLOT = 60; // minutes
 var BRAND = "SOFTLINEBY.CLA";
+/** Version du moteur, affichée à l'adresse /exec : permet de vérifier que le dernier code est bien déployé. */
+var VERSION = "2026-10-31 calendrier ouvert";
 var DEFAULT_SITE_URL = "https://rayanevanosselt.github.io/Softlinebycla-tatouages";
 
 var SHEETS = {
@@ -1333,7 +1335,7 @@ function doGet(e) {
     var store = new SheetStore();
     if (p.action === "availability") return apiAvailability(store, p, Date.now());
     if (p.action === "proposal") return apiProposal(store, p, Date.now());
-    return { ok: true, service: BRAND, status: "en ligne" };
+    return { ok: true, service: BRAND, status: "en ligne", version: VERSION, calendrier: store.settings().allOpen ? "entièrement ouvert" : "heures cochées" };
   });
 }
 
