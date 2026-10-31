@@ -66,10 +66,10 @@ Tant que ce réglage n'est pas fait, l'adresse du site affiche seulement le text
 
 Ce que l'installation a créé :
 
-- dans le tableur, les onglets **Réservations**, **Disponibilités**, **Indisponibilités**, **Messages**, **Paramètres** et **Journal** ;
+- dans le tableur, les onglets **Réservations**, **Indisponibilités**, **Messages**, **Paramètres** et **Journal** (plus un onglet **Disponibilités** masqué, qui ne sert que si vous choisissez d'ouvrir vos heures vous-même) ;
 - dans Google Agenda, un agenda **SOFTLINEBY.CLA — Rendez-vous** ;
 - dans Google Drive, un dossier privé **SOFTLINEBY.CLA — Images de référence (privé)** ;
-- deux automatismes : la réaction à vos décisions dans le tableur, et une maintenance toutes les heures (expiration des demandes, nouvel essai des e-mails en échec, ajout des journées suivantes dans « Disponibilités », suppression des anciennes données).
+- deux automatismes : la réaction à vos décisions dans le tableur, et une maintenance toutes les heures (expiration des demandes, nouvel essai des e-mails en échec, suppression des anciennes données).
 
 ---
 
@@ -130,18 +130,25 @@ Dans l'onglet **Paramètres** du tableur, modifiez uniquement la colonne **Valeu
 
 - **E-mail qui reçoit les demandes et messages** : votre adresse (déjà remplie).
 - **Adresse du site** : `https://rayanevanosselt.github.io/Softlinebycla-tatouages` (sans `/` à la fin). À changer seulement si vous branchez un nom de domaine (étape 9).
+- **Calendrier entièrement ouvert** : `oui` (réglage par défaut). Voir l'étape 7.
 - **Mon agenda Google principal bloque aussi des créneaux** : `oui` si vos rendez-vous personnels (dans votre agenda Google habituel) doivent rendre ces heures indisponibles sur le site.
 - Les délais (blocage d'une demande, délai minimum, durée maximale…) peuvent rester tels quels.
 
 ---
 
-## Étape 7 — Ouvrir vos premières disponibilités (5 minutes)
+## Étape 7 — Votre calendrier est ouvert : rien à faire (2 minutes)
 
-Par défaut, **tout est fermé** : un client ne voit que ce que vous ouvrez.
+Par défaut, **tout votre calendrier est ouvert** : chaque jour, de 11:00 à 20:00, les clients choisissent librement leur créneau sur le site. Vous n'avez rien à ouvrir.
 
-1. Onglet **Disponibilités** : une ligne par jour, une case par heure (11:00 à 19:00, chaque case = 1 h).
-2. Cochez les heures où vous acceptez des rendez-vous.
-3. Pour aller plus vite : sélectionnez plusieurs lignes, puis **✦ SOFTLINEBY.CLA → Ouvrir toute la plage (11:00–20:00) pour les jours sélectionnés**.
+Un créneau disparaît automatiquement du site quand il est pris par :
+
+- une demande en attente ou un rendez-vous confirmé ;
+- une période de l'onglet **Indisponibilités** (vacances, journée off, formation…) ;
+- un événement de votre **Google Agenda** (l'agenda `SOFTLINEBY.CLA — Rendez-vous`, et votre agenda principal si le réglage est sur `oui`).
+
+Vérifiez simplement que vos rendez-vous personnels et vos congés à venir sont bien dans Google Agenda ou dans **Indisponibilités**.
+
+> Vous préférez ouvrir vos heures vous-même ? Mettez **Calendrier entièrement ouvert** sur `non`, relancez **✦ SOFTLINEBY.CLA → 1. Installer / réparer** : l'onglet **Disponibilités** réapparaît, et seules les heures cochées sont proposées.
 
 Le détail de l'utilisation quotidienne est dans [GUIDE-ADMIN.md](GUIDE-ADMIN.md).
 
@@ -181,7 +188,7 @@ Le détail de l'utilisation quotidienne est dans [GUIDE-ADMIN.md](GUIDE-ADMIN.md
 - [ ] L'e-mail de test est bien arrivé
 - [ ] Une réservation test a été faite, acceptée, puis annulée
 - [ ] Les mentions légales sont complétées et relues (numéro BCE obligatoire)
-- [ ] Les disponibilités des prochaines semaines sont ouvertes
+- [ ] Vos congés et rendez-vous personnels des prochaines semaines sont dans Google Agenda ou dans l'onglet **Indisponibilités**
 - [ ] Les réseaux sociaux sont renseignés (ou volontairement laissés vides)
 - [ ] Les photos du portfolio sont vérifiées, notamment celles qui montrent des prénoms ou des dates (Ohana, Prénoms entrelacés, Bouquet & prénom, Une date). Assurez-vous d'avoir l'accord des clients concernés, ou masquez-les (voir [GUIDE-ADMIN.md](GUIDE-ADMIN.md), section Portfolio).
 
@@ -204,7 +211,8 @@ Le détail de l'utilisation quotidienne est dans [GUIDE-ADMIN.md](GUIDE-ADMIN.md
 | L'adresse du site affiche le texte du README | Étape 1 : la **Source** doit être **GitHub Actions**, puis relancez **Run workflow**. |
 | La coche du site est rouge dans **Actions** | Après une modification de `content/site.json` : une virgule ou un guillemet manque. Ouvrez l'échec pour voir la ligne concernée. |
 | Le calendrier affiche « Connexion impossible » | `adresseApiReservation` est vide ou mal copiée (étape 5), ou l'accès du déploiement n'est pas « Tout le monde » (étape 4). |
-| Le calendrier est vide (tout est fermé) | Aucune case n'est cochée dans l'onglet **Disponibilités** (étape 7). |
+| Le calendrier est vide (tout est fermé) | Dans l'onglet **Paramètres**, **Calendrier entièrement ouvert** doit être sur `oui` (étape 7). Après une mise à jour du moteur, vérifiez aussi que vous avez créé une **nouvelle version** du déploiement (encadré 🔁 de l'étape 4). |
+| Un jour libre apparaît « complet » | Un événement de votre Google Agenda ou une ligne de **Indisponibilités** couvre ce moment. |
 | Le menu ✦ SOFTLINEBY.CLA n'apparaît pas | Rechargez le tableur. Vérifiez que le code est bien enregistré dans Apps Script (étape 2). |
 | Choisir une décision ne fait rien | Relancez **✦ SOFTLINEBY.CLA → 1. Installer / réparer** (cela réinstalle les automatismes). |
 | Pas d'e-mail reçu | Regardez dans les spams, puis l'onglet **Journal** du tableur : il indique chaque e-mail envoyé ou en échec. Les échecs sont relancés automatiquement toutes les heures. |

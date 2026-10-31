@@ -68,6 +68,7 @@ export class MemoryStore {
   cfg: Record<string, unknown> = {
     notifyEmail: "artist@example.com",
     siteUrl: "https://rayanevanosselt.github.io/Softlinebycla-tatouages",
+    allOpen: true,
     pendingHoldHours: 72,
     proposalHoldHours: 72,
     minNoticeHours: 24,

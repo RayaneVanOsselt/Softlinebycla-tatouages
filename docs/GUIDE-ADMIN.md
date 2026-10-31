@@ -2,30 +2,33 @@
 
 Tout se gère à deux endroits :
 
-- **le tableur Google** `SOFTLINEBY.CLA — Réservations` : disponibilités, demandes, messages et réglages (fonctionne aussi dans l'application **Google Sheets** sur téléphone) ;
+- **le tableur Google** `SOFTLINEBY.CLA — Réservations` : demandes, indisponibilités, messages et réglages (fonctionne aussi dans l'application **Google Sheets** sur téléphone) ;
 - **GitHub** : le portfolio et les informations du site (fichiers `content/portfolio.json` et `content/site.json`).
 
 Il n'y a pas d'espace administrateur sur le site lui-même.
 
 ---
 
-## 1. Ouvrir vos disponibilités (onglet Disponibilités)
+## 1. Votre calendrier (ouvert par défaut)
 
-Par défaut, **tout est fermé** : un client ne voit que ce que vous ouvrez.
+**Tout votre calendrier est ouvert** : chaque jour, de 11:00 à 20:00, les clients choisissent librement leur créneau sur le site, jusqu'à 120 jours à l'avance (réglable) et au plus tôt 24 h à l'avance (réglable). Vous n'avez rien à ouvrir.
 
-- Une ligne = un jour. Une case = une heure (de 11:00 à 19:00 ; la dernière se termine à 20:00).
-- **Cochez** les heures où vous acceptez des rendez-vous.
-- **Plusieurs jours d'un coup** : sélectionnez les lignes, puis **✦ SOFTLINEBY.CLA → Ouvrir toute la plage (11:00–20:00) pour les jours sélectionnés**, ou **Fermer les jours sélectionnés**.
-- De nouvelles journées sont ajoutées automatiquement en bas de l'onglet (environ 6 mois à l'avance).
+Ce que voit un client = tous les créneaux de 11:00 à 20:00, **moins** :
 
-**Vacances ou journée bloquée** : onglet **Indisponibilités**, une ligne par période (date et heure de début, date et heure de fin, motif privé). Une période bloquée l'emporte toujours sur les cases cochées.
+- les demandes en attente et les rendez-vous confirmés ;
+- les périodes de l'onglet **Indisponibilités** ;
+- les événements de votre **Google Agenda**.
 
-**Votre agenda Google** : tout événement « occupé » dans l'agenda `SOFTLINEBY.CLA — Rendez-vous` (et dans votre agenda principal si le réglage est sur `oui`) rend ces heures indisponibles sur le site.
+Une demande de 3 h n'est proposée que si 3 heures consécutives sont libres, et jamais au-delà de 20:00.
 
-Ce que voit un client = vos heures cochées, moins les rendez-vous, les demandes en attente, les indisponibilités et vos occupations Google Agenda.
-Une demande de 3 h n'est proposée que si 3 heures consécutives sont libres.
+**Bloquer un moment (vacances, journée off, rendez-vous perso)**, au choix :
 
-> Décocher une heure n'annule jamais un rendez-vous existant.
+- onglet **Indisponibilités** : une ligne par période (date et heure de début, date et heure de fin, motif privé) ;
+- ou un événement dans Google Agenda : l'agenda `SOFTLINEBY.CLA — Rendez-vous`, ou votre agenda principal si le réglage **Mon agenda Google principal bloque aussi des créneaux** est sur `oui`. Un événement marqué « Disponible » dans Google Agenda ne bloque rien.
+
+> Bloquer un moment n'annule jamais un rendez-vous existant.
+
+**Préférer ouvrir vos heures vous-même** : dans **Paramètres**, mettez **Calendrier entièrement ouvert** sur `non`, puis lancez **✦ SOFTLINEBY.CLA → 1. Installer / réparer**. L'onglet **Disponibilités** réapparaît : une ligne par jour, une case par heure, et seules les heures cochées sont proposées (menu **✦ → Ouvrir toute la plage / Fermer les jours sélectionnés** pour aller plus vite).
 
 ---
 
@@ -75,6 +78,7 @@ Modifiez uniquement la colonne **Valeur** :
 - adresse du site (utilisée dans les liens des e-mails) ;
 - délais : blocage d'une demande en attente, délai de réponse à une proposition, délai minimum avant un rendez-vous, réservation possible jusqu'à X jours, durée maximale ;
 - durées de conservation (RGPD) : images de référence et données clients. Si vous les changez, changez aussi les mêmes valeurs dans `content/site.json` (rubrique `conservation`), car elles sont affichées dans la politique de confidentialité ;
+- calendrier entièrement ouvert (`oui` / `non`, voir section 1) ;
 - votre agenda principal bloque aussi des créneaux (`oui` / `non`) ;
 - accusé de réception automatique pour les messages de contact (`oui` / `non`).
 

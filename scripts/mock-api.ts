@@ -10,13 +10,7 @@ import { loadGas, MemoryStore } from "../tests/support/gas";
 const gas = loadGas();
 const store = new MemoryStore();
 store.cfg.siteUrl = "http://localhost:3000";
-
-// Démo : mardis, jeudis et samedis ouverts sur 3 mois
-const today = new Date();
-for (let i = 1; i < 92; i++) {
-  const d = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() + i));
-  if ([2, 4, 6].includes(d.getUTCDay())) store.openDay(d.toISOString().slice(0, 10));
-}
+// Comme en production : calendrier entièrement ouvert (chaque jour de 11:00 à 20:00).
 
 const sentBefore = { n: 0 };
 function printMails() {
@@ -58,4 +52,4 @@ http
       }),
     );
   })
-  .listen(8787, () => console.log("API de démonstration : http://localhost:8787/exec (mardis, jeudis et samedis ouverts)"));
+  .listen(8787, () => console.log("API de démonstration : http://localhost:8787/exec (calendrier entièrement ouvert)"));

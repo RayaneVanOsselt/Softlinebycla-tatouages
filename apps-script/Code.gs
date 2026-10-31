@@ -98,6 +98,7 @@ COLUMNS.forEach(function (c, i) {
 var SETTINGS = [
   ["notifyEmail", "E-mail qui reçoit les demandes et messages", ""],
   ["siteUrl", "Adresse du site", DEFAULT_SITE_URL],
+  ["allOpen", "Calendrier entièrement ouvert : chaque jour de 11:00 à 20:00, les clients choisissent librement (oui/non ; « non » = seules les heures cochées dans l'onglet Disponibilités)", "oui"],
   ["pendingHoldHours", "Blocage d'une demande en attente (heures)", 72],
   ["proposalHoldHours", "Délai de réponse à une proposition (heures)", 72],
   ["minNoticeHours", "Délai minimum avant un rendez-vous (heures)", 24],
@@ -230,6 +231,25 @@ function computeDay(dateKey, openSet, blockers, opts) {
   });
   var state = slots.some(function (s) { return s.status === "available"; }) ? "available" : slots.some(function (s) { return s.status === "held"; }) ? "held" : anyFuture ? "full" : "closed";
   return { date: dateKey, state: state, slots: slots };
+}
+
+/**
+ * Heures ouvertes par jour ({ "AAAA-MM-JJ": { minute: true } }).
+ * Calendrier entièrement ouvert (réglage par défaut) : chaque jour, toute la plage 11:00–20:00 ;
+ * les rendez-vous, les indisponibilités et Google Agenda retirent ensuite les créneaux pris.
+ * Sinon : uniquement les cases cochées dans l'onglet Disponibilités.
+ */
+function openHours(store, cfg, fromKey, toKey) {
+  if (!cfg.allOpen) return store.openMap(fromKey, toKey);
+  var map = {};
+  for (var k = fromKey; k <= toKey; k = addDays(k, 1)) {
+    var set = {};
+    slotStarts().forEach(function (m) {
+      set[m] = true;
+    });
+    map[k] = set;
+  }
+  return map;
 }
 
 /** Réservations qui occupent un créneau (les demandes échues ne bloquent plus). */
@@ -642,7 +662,7 @@ function apiAvailability(store, params, now) {
   var dates = daysInMonth(month);
   var from = zonedToUtc(dates[0], 0).getTime();
   var to = zonedToUtc(addDays(dates[dates.length - 1], 1), 0).getTime();
-  var open = store.openMap(dates[0], dates[dates.length - 1]);
+  var open = openHours(store, cfg, dates[0], dates[dates.length - 1]);
   var blockers = bookingBlockers(store.bookings(), from, to, now)
     .concat(store.blocked(from, to).map(function (i) { return { start: i.start, end: i.end, kind: "busy" }; }))
     .concat(store.busy(from, to, true).intervals.map(function (i) { return { start: i.start, end: i.end, kind: "busy" }; }));
@@ -704,7 +724,7 @@ function apiBook(store, p, now) {
   try {
     booking = store.withLock(function () {
     expireDue(store, now);
-    var open = store.openMap(x.date, x.date)[x.date] || {};
+    var open = openHours(store, cfg, x.date, x.date)[x.date] || {};
     var blockers = bookingBlockers(store.bookings(), dayFrom, dayTo, now)
       .concat(store.blocked(dayFrom, dayTo).map(function (i) { return { start: i.start, end: i.end, kind: "busy" }; }))
       .concat(busy.intervals.map(function (i) { return { start: i.start, end: i.end, kind: "busy" }; }));
@@ -962,7 +982,7 @@ function maintenance(store, now) {
   report.anonymized = anonymized;
   report.messagesDeleted = store.purgeMessages(dataCut);
   report.mailsRetried = store.retryMails();
-  store.extendAvailability(now);
+  if (!cfg.allOpen) store.extendAvailability(now);
   return report;
 }
 
@@ -1007,6 +1027,7 @@ function SheetStore() {
       s[k] = Number(s[k]) || Number(SETTINGS.filter(function (d) { return d[0] === k; })[0][2]);
     });
     s.maxDurationHours = Math.min(9, Math.max(1, s.maxDurationHours));
+    s.allOpen = yes(s.allOpen);
     s.useMainCalendar = yes(s.useMainCalendar);
     s.contactAutoReply = yes(s.contactAutoReply);
     s.siteUrl = String(s.siteUrl || DEFAULT_SITE_URL).replace(/\/$/, "");
@@ -1435,6 +1456,10 @@ function installer() {
   s.setColumnWidth(2, 360);
   s.hideColumns(3);
   s.setFrozenRows(1);
+  // Calendrier entièrement ouvert : l'onglet Disponibilités ne sert pas, il est masqué (réaffiché si le réglage passe à « non »)
+  var allOpen = existing.allOpen === undefined || existing.allOpen === "" ? true : yes(existing.allOpen);
+  if (allOpen) a.hideSheet();
+  else a.showSheet();
 
   // Journal
   var j = ss.getSheetByName(SHEETS.journal) || ss.insertSheet(SHEETS.journal);
@@ -1533,6 +1558,12 @@ function runMaintenance() {
 }
 
 function setSelectedDays(open) {
+  if (new SheetStore().settings().allOpen) {
+    SpreadsheetApp.getUi().alert(
+      "Votre calendrier est entièrement ouvert : les clients choisissent librement leur créneau entre 11:00 et 20:00.\n\nPour bloquer un moment, ajoutez une ligne dans l'onglet « " + SHEETS.blocked + " » ou un événement dans votre Google Agenda.",
+    );
+    return;
+  }
   var sh = SpreadsheetApp.getActiveSheet();
   if (sh.getName() !== SHEETS.availability) {
     SpreadsheetApp.getUi().alert("Sélectionnez d'abord des lignes (jours) dans l'onglet « " + SHEETS.availability + " ».");

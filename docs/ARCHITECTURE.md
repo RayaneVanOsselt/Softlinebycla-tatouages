@@ -71,7 +71,7 @@ Le moteur Apps Script ne dépend d'aucune bibliothèque : le même fichier est e
 
 1. **Le Google Sheet est la source de vérité.** Google Agenda est une copie synchronisée.
 2. **Verrou global** (`LockService`) : toute écriture (demande, décision, réponse client, expiration) relit l'état puis vérifie les conflits sous verrou. Deux demandes simultanées sur le même créneau ne peuvent donc jamais être enregistrées toutes les deux.
-3. Chaque demande vérifie, dans l'ordre : expiration des demandes échues, heures ouvertes, indisponibilités, occupations Google Agenda, demandes et rendez-vous bloquants.
+3. Chaque demande vérifie, dans l'ordre : expiration des demandes échues, heures ouvertes (par défaut tout le calendrier, 11:00–20:00 chaque jour ; sinon les cases cochées de l'onglet Disponibilités, réglage « Calendrier entièrement ouvert »), indisponibilités, occupations Google Agenda, demandes et rendez-vous bloquants.
 4. **E-mails** : chaque envoi est consigné dans l'onglet Journal ; un échec est réessayé par la maintenance horaire. Une panne Gmail ou Agenda ne fait jamais perdre la demande.
 5. **Google Agenda** : événement gris (« ⏳ Demande ») à la réception, orange (confirmé) après acceptation, retiré en cas de refus, d'annulation ou d'expiration. Les événements créés par le moteur (étiquette `slcRef`) sont exclus du calcul des occupations.
 6. **Fuseau Europe/Brussels** : les instants sont stockés en ISO UTC (colonnes techniques) et convertis avec `Utilities.formatDate`. Les changements d'heure été/hiver sont testés.
@@ -93,7 +93,7 @@ Chaque transition est validée (`canTransition`) et notée dans la colonne Histo
 
 ### Modèle de données (onglets du Google Sheet)
 
-`Réservations` (une ligne par demande ; colonnes de suivi, colonnes de décision, colonnes techniques masquées), `Disponibilités` (une ligne par jour, une case par heure), `Indisponibilités`, `Messages`, `Paramètres`, `Journal`. Identifiants techniques (feuille, agenda, dossier Drive, secret de hachage) dans les propriétés du script.
+`Réservations` (une ligne par demande ; colonnes de suivi, colonnes de décision, colonnes techniques masquées), `Disponibilités` (une ligne par jour, une case par heure ; masqué et ignoré quand le calendrier est entièrement ouvert), `Indisponibilités`, `Messages`, `Paramètres`, `Journal`. Identifiants techniques (feuille, agenda, dossier Drive, secret de hachage) dans les propriétés du script.
 
 ## 5. Sécurité et RGPD
 
@@ -111,7 +111,7 @@ Chaque transition est validée (`canTransition`) et notée dans la colonne Histo
 `npm test` (Vitest) exécute le vrai `apps-script/Code.gs` avec des doublures des services Google :
 
 - fuseau Europe/Brussels : heure d'hiver, d'été et jours de changement d'heure ;
-- disponibilités : fermé par défaut, plage 11–20 h, heures consécutives, délai de prévenance, indisponibilités et Google Agenda, aucune donnée client exposée ;
+- disponibilités : calendrier entièrement ouvert par défaut (fenêtre de réservation, créneau choisi puis bloqué pour les autres), mode « heures cochées », plage 11–20 h, heures consécutives, délai de prévenance, indisponibilités et Google Agenda, aucune donnée client exposée ;
 - demandes : statut « En attente », blocage du créneau, deux e-mails sans confirmation, refus des chevauchements, validation et anti-robots, images privées, panne d'e-mail ou d'agenda sans perte ;
 - décisions : acceptation avec durée allongée et `.ics`, refus, proposition confirmée seulement par le client, jeton invalide, message clair sans date ni heure, transitions cohérentes ;
 - automatismes : expiration, purge RGPD ;

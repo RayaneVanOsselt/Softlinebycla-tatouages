@@ -49,8 +49,47 @@ describe("fuseau horaire Europe/Brussels", () => {
   });
 });
 
+describe("calendrier entièrement ouvert (réglage par défaut)", () => {
+  it("chaque jour à venir est ouvert de 11:00 à 20:00 sans que l'artiste n'ouvre rien", () => {
+    const r = gas.apiAvailability(store, { month: "2026-11", duration: 60 }, NOW);
+    const byDate = Object.fromEntries(r.days.map((d: { date: string; state: string; slots: unknown[] }) => [d.date, d]));
+    expect(byDate["2026-11-01"].state).toBe("closed"); // passé
+    expect(byDate["2026-11-02"].slots).toHaveLength(0); // délai minimum de 24 h
+    for (const date of ["2026-11-04", "2026-11-07", "2026-11-08", "2026-11-30"]) {
+      expect(byDate[date].state).toBe("available");
+      expect(byDate[date].slots.map((s: { start: string }) => s.start)).toEqual(["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]);
+    }
+    const far = gas.apiAvailability(store, { month: "2027-04", duration: 60 }, NOW);
+    expect(far.days.every((d: { state: string }) => d.state === "closed")).toBe(true); // au-delà de 120 jours
+  });
+
+  it("le client choisit librement son créneau ; il est ensuite bloqué pour les autres", () => {
+    const r = request();
+    expect(r.ok).toBe(true);
+    expect(statusOf(r.reference)).toBe("PENDING");
+    const day = gas.apiAvailability(store, { month: "2026-11", duration: 60 }, NOW).days.find((d: { date: string }) => d.date === DAY);
+    const status = Object.fromEntries(day.slots.map((s: { start: string; status: string }) => [s.start, s.status]));
+    expect(status["14:00"]).toBe("held");
+    expect(status["15:00"]).toBe("held");
+    expect(status["16:00"]).toBe("available");
+    expect(request({ email: "autre@example.com", start: "15:00", durationMinutes: 60 }).code).toBe("SLOT_HELD");
+  });
+
+  it("les indisponibilités et Google Agenda retirent des créneaux", () => {
+    store.blockedPeriods.push({ start: at(DAY, 11), end: at(DAY, 20) }); // journée bloquée
+    store.busyIntervals.push({ start: at("2026-11-11", 12), end: at("2026-11-11", 14) }); // rendez-vous personnel
+    const days = gas.apiAvailability(store, { month: "2026-11", duration: 60 }, NOW).days;
+    expect(days.find((d: { date: string }) => d.date === DAY).state).toBe("full");
+    const status = Object.fromEntries(days.find((d: { date: string }) => d.date === "2026-11-11").slots.map((s: { start: string; status: string }) => [s.start, s.status]));
+    expect([status["12:00"], status["13:00"]]).toEqual(["unavailable", "unavailable"]);
+    expect(status["14:00"]).toBe("available");
+    expect(request().code).toBe("SLOT_UNAVAILABLE");
+  });
+});
+
 describe("disponibilités", () => {
-  it("rien n'est proposé si l'artiste n'a rien ouvert", () => {
+  it("réglage « non » : rien n'est proposé si l'artiste n'a rien coché", () => {
+    store.cfg.allOpen = false;
     const r = gas.apiAvailability(store, { month: "2026-11", duration: 60 }, NOW);
     expect(r.ok).toBe(true);
     expect(r.days.every((d: { state: string }) => d.state === "closed")).toBe(true);
@@ -64,7 +103,8 @@ describe("disponibilités", () => {
     expect(day.slots.at(-1).end).toBe("20:00");
   });
 
-  it("une durée de 3 h exige 3 heures consécutives ouvertes et ne dépasse jamais 20:00", () => {
+  it("réglage « non » : une durée de 3 h exige 3 heures consécutives cochées et ne dépasse jamais 20:00", () => {
+    store.cfg.allOpen = false;
     store.openDay(DAY, [11, 12, 14, 15, 16, 18, 19]);
     const day = gas.apiAvailability(store, { month: "2026-11", duration: 180 }, NOW).days.find((d: { date: string }) => d.date === DAY);
     expect(day.slots.map((s: { start: string; end: string }) => `${s.start}-${s.end}`)).toEqual(["14:00-17:00"]);
