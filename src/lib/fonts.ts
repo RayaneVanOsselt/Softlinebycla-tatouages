@@ -1,18 +1,8 @@
-import { Cormorant_Garamond, Nunito_Sans } from "next/font/google";
-
-// Polices auto-hébergées au build par next/font : aucune requête vers Google depuis le navigateur (RGPD).
-export const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-/** Sans-serif humaniste proche du mot-symbole du logo (style Avenir). */
-export const nunito = Nunito_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "600", "700"],
-  variable: "--font-nunito",
-  display: "swap",
-});
+/**
+ * Polices auto-hébergées (paquets Fontsource, licence OFL) : aucune requête vers Google,
+ * ni dans le navigateur (RGPD) ni pendant le build (une panne de Google Fonts ne bloque plus la publication).
+ * Familles exposées : « Cormorant Garamond Variable » (titres, romain et italique) et « Nunito Sans Variable » (texte).
+ */
+import "@fontsource-variable/cormorant-garamond/wght.css";
+import "@fontsource-variable/cormorant-garamond/wght-italic.css";
+import "@fontsource-variable/nunito-sans/wght.css";

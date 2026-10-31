@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { basePath } from "@/lib/config";
-import { cormorant, nunito } from "@/lib/fonts";
+import "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = { title: "404 · SOFTLINEBY.CLA", robots: { index: false } };
@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "404 · SOFTLINEBY.CLA", robots: { in
 /** Page 404 (GitHub Pages affiche 404.html pour toute adresse inconnue). */
 export default function GlobalNotFound() {
   return (
-    <html lang="fr" className={`${cormorant.variable} ${nunito.variable}`}>
+    <html lang="fr">
       <body className="bg-ivory text-chocolate">
         <main className="paper-grain grid min-h-svh place-items-center px-6 text-center">
           <div>

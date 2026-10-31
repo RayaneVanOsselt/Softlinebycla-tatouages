@@ -34,8 +34,8 @@
   --color-danger: var(--color-nut);
 
   /* Typographies */
-  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-sans: var(--font-nunito), "Nunito Sans", "Avenir Next", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Nunito Sans Variable", "Nunito Sans", "Avenir Next", system-ui, sans-serif;
 
   /* Échelle typographique fluide */
   --text-eyebrow: 0.72rem;

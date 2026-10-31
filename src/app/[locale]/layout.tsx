@@ -9,7 +9,7 @@ import { Header } from "@/components/site/Header";
 import { Intro, introBootScript } from "@/components/site/Intro";
 import { routing } from "@/i18n/routing";
 import { asset, siteUrl } from "@/lib/config";
-import { cormorant, nunito } from "@/lib/fonts";
+import "@/lib/fonts";
 import "../globals.css";
 
 /**
@@ -59,7 +59,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const t = await getTranslations({ locale, namespace: "nav" });
 
   return (
-    <html lang={locale} className={`no-js ${cormorant.variable} ${nunito.variable}`} suppressHydrationWarning>
+    <html lang={locale} className="no-js" suppressHydrationWarning>
       <head>
         {process.env.NODE_ENV === "production" && <meta httpEquiv="Content-Security-Policy" content={CSP} />}
       </head>
